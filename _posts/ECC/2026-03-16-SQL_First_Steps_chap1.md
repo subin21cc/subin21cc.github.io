@@ -9,6 +9,7 @@ tags: [dev, study, sql]
 
 # 1장: 데이터베이스와 SQL
 
+<br>
 
 ## 1강. 데이터베이스
 
@@ -37,6 +38,7 @@ tags: [dev, study, sql]
     - DDL(Data Definition Language): 데이터 정의어 | 테이블이나 인덱스 같은 데이터베이스의 구조를 생성, 수정, 삭제하는 언어 (예: `CREATE`, `ALTER`, `DROP`)
     - DCL(Data Control Language): 데이터 제어어 | 데이터에 접근할 수 있는 권한을 부여하거나 회수하여 보안을 관리하는 언어 (예: `GRANT`, `REVOKE`)
 
+<br>
 
 ## 2강. 다양한 데이터베이스
 
@@ -71,6 +73,7 @@ tags: [dev, study, sql]
 - 고유 방언의 예: 키워드 생략, 외부결합 등
 - DBMS마다 **고유한 방언**이 존재하지만, 시스템 이동 시 **수정 비용과 인력 교육비가 가중**되므로 유지보수와 확장을 위해 **표준 SQL 사용을 지향**해야 함!
 
+<br>
 
 ## 3강. 데이터베이스 서버
 
