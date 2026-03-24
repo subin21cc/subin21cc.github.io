@@ -1,6 +1,6 @@
 ---
 title: "[SQL 첫걸음] 4장: 데이터의 추가, 삭제, 갱신"
-date: 2026-03-24 14:00:00 +0900
+date: 2026-03-24 15:00:00 +0900
 categories: [ECC, Team-Project, SQL_First_Steps]
 tags: [dev, study, sql]
 ---
