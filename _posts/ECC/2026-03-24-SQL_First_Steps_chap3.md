@@ -62,7 +62,7 @@ SELECT 열명 FROM 테이블명 ORDER BY 열명1, 열명2...
 
 ```sql
 SELECT 열명 FROM 테이블명 
-						ORDER BY 열명1 [ASC|DESC], 열명2[ASC|DESC]...
+    ORDER BY 열명1 [ASC|DESC], 열명2[ASC|DESC]...
 ```
 
 ### 3. NULL 값의 정렬순서
@@ -118,7 +118,7 @@ SELECT 식1, 식2... FROM 테이블명
 
 ```sql
 SELECT *, price * quantity AS amount FROM sample34 
-						WHERE price * quantity >= 2000;
+    WHERE price * quantity >= 2000;
 ```
 
 - WHERE구와  SELECT구의 내부처리 순서
@@ -165,11 +165,11 @@ SELECT amount, ROUND(amount, 1) FROM sample341;
 
 ### 1. 문자열 결합
 
-| 연산자/함수 | 연산 | 데이터베이스 |
-| --- | --- | --- |
-| + | 문자열 결합 | SQL Server |
-| || | 문자열 결합 | Oracle, DB2, PostgreSQL |
-| CONCAT | 문자열 결합 | MySQL |
+| 연산자/함수 | 연산    | 데이터베이스     |
+|-----|-------|------------|
+| +   | 문자열 결합 | SQL Server |
+| `\|\|` | 문자열 결합 | Oracle, DB2, PostgreSQL |
+| CONCAT | 문자열 결합 | MySQL      |
 
 ## 2. SUBSTRING 함수
 
