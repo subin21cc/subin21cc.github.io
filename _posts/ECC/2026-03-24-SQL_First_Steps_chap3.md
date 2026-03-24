@@ -166,9 +166,9 @@ SELECT amount, ROUND(amount, 1) FROM sample341;
 ### 1. 문자열 결합
 
 | 연산자/함수 | 연산    | 데이터베이스     |
-|-----|-------|------------|
-| +   | 문자열 결합 | SQL Server |
-| `\|\|` | 문자열 결합 | Oracle, DB2, PostgreSQL |
+|------|-------|------------|
+| +    | 문자열 결합 | SQL Server |
+| `||` | 문자열 결합 | Oracle, DB2, PostgreSQL |
 | CONCAT | 문자열 결합 | MySQL      |
 
 ## 2. SUBSTRING 함수
