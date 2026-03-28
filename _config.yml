@@ -15,7 +15,7 @@ timezone:
 # ↓ --------------------------
 
 # 파비콘 설정
-favicon: /assets/img/favicon/favicon.png
+favicon: /assets/img/favicon/favicon.ico
 
 title: SUBIN.dev # the main title
 
