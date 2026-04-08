@@ -14,8 +14,6 @@ timezone:
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-# 파비콘 설정
-favicon: /assets/img/favicon/favicon.ico
 
 title: SUBIN.dev # the main title
 
@@ -102,7 +100,10 @@ theme_mode: # [light | dark]
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: /assets/img/profile_no_background.png
+avatar: /assets/img/favicon.png
+
+# 파비콘 설정
+favicon: /assets/img/favicon/favicon.png
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
