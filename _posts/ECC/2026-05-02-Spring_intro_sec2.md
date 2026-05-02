@@ -1,5 +1,5 @@
 ---
-title: "[스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술] 섹션 2. 강의 소개"
+title: "[스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술] 섹션 2. 프로젝트 환경설정"
 date: 2026-05-02 20:00:00 +0900
 categories: [ECC, Team-Project, Spring_intro]
 tags: [dev, study, java, spring]
