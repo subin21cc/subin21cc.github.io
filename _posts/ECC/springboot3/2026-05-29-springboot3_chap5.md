@@ -87,7 +87,14 @@ public String show(@PathVariable Long id){
 URL 요청을 통해 확보한 식별자(id)를 사용하여 데이터를 조회하고, 이를 화면에 출력하는 작업은 크게 다음의 3단계로 진행된다.
 
 1. id를 조회해 DB에서 해당 데이터 가져오기
-2. 가져온 데이터를 모델에 등록하기
+2. 가져온 데이터를 모델에 등록하기5. 전체 흐름을 테스트하기 위해 로컬 애플리케이션 서버를 재시작하고 웹 브라우저에서 `localhost:8080/articles` 경로로 접속한다. 이 시점에는 화면에 연동 데이터가 출력되지 않는다. 이는 휘발성 메모리 DB 환경 특성상 서버 프로세스가 재가동되면서 기존 적재 레코드가 모두 초기화되었기 때문이다.
+6. 출력 검증용 데이터를 재생성하기 위해 `localhost:8080/articles/new` 경로에 접근하여 '가가가가/1111', '나나나나/2222', '다다다다/3333' 총 3개의 테스트 데이터를 차례대로 입력 및 제출한다.
+7. 개발 툴 하단의 실행 콘솔 로그 레이어를 조회하면 식별자 id 값이 1번, 2번, 3번으로 할당된 엔티티 레코드가 순차적으로 정상 영속화되었음을 확인할 수 있다.
+8. 데이터 적재 후 다시 목록 페이지(`localhost:8080/articles`)로 접속하면, 입력했던 3개의 행 데이터가 정형화된 표 구조에 맞추어 브라우저 화면에 출력된다.
+
+### 💡핵심 머스테치 문법 특징
+
+템플릿 엔진 문법에 기입한 변수(`articleList`)가 **데이터의 집합(Collection/List)** 구조를 가질 경우, 블록 내부에 선언된 HTML 코드가 해당 컬렉션이 보유한 데이터의 개수만큼 자동으로 반복 실행된다. 본 예제처럼 리스트 내에 데이터가 3개 등록되어 있다면 루프를 돌며 각 내부 요소의 상세 필드 값(`id`, `title`, `content`)을 차례대로 매핑하여 동적 행을 구성하게 되며, 이는 자바 언어의 `for`반복문 메커니즘과 동일하게 동작한다.
 3. 조회한 데이터를 사용자에게 보여 주기 위한 뷰 페이지 만들고 반환하기
 
 본격적인 구현에 앞서, 컨트롤러 메서드 내부에 해당 단계를 주석으로 작성하여 흐름을 정의한다.
@@ -133,7 +140,7 @@ Article articleEntity = articleRepository.findById(id); [cite: 40]
 public String show(@PathVariable Long id, Model model){ [cite: 74]
 ```
 
-2모델에 데이터를 등록할 때는 `addAttribute()` 메서드를 사용한다. 해당 메서드는 `model.addAttribute(String name, Object value)` 형식을 가진다. 본 실습에서는 `"article"`이라는 식별 이름으로 조회된 객체인 `articleEntity`를 등록한다.
+2. 모델에 데이터를 등록할 때는 `addAttribute()` 메서드를 사용한다. 해당 메서드는 `model.addAttribute(String name, Object value)` 형식을 가진다. 본 실습에서는 `"article"`이라는 식별 이름으로 조회된 객체인 `articleEntity`를 등록한다.
 
 ```
 // 2. 모델에 데이터 등록하기 [cite: 83]
@@ -154,7 +161,7 @@ model.addAttribute("article", articleEntity); [cite: 84]
     ```
 
 2. 실제 파일을 생성하기 위해 프로젝트 탐색기에서 `resources > templates > articles` 디렉터리로 이동한 후, `show.mustache` 파일을 새로 만든다.
-3. 파일 내부에 공통 레이아웃 구조를 적용하기 위해 상단에는 `{{>layouts/header}}`, 하단에는 `{{>layouts/footer}}`를 작성한다.
+3. 파일 내부에 공통 레이아웃 구조를 적용하기 위해 상단에는 {% raw %}`{{>layouts/header}}`, 하단에는 {% raw %}`{{>layouts/footer}}`를 작성한다.
 
     ```
     {{>layouts/header}}
@@ -171,6 +178,7 @@ model.addAttribute("article", articleEntity); [cite: 84]
 8. 코드를 빌드한 후 브라우저 화면을 새로고침하여 수정한 정적 임시 데이터가 표에 정상적으로 나타나는지 확인한다. 이는 실제 데이터가 연동되었을 때 표시될 레이아웃 구조를 점검하는 과정이다.
 9. 고정된 임시 데이터 대신 모델에 담긴 동적 데이터를 뷰 페이지와 연동한다. 머스테치 문법에서 모델 속성 객체를 사용하기 위해 `#` 기호로 시작하고 `/` 기호로 종료하는 문법을 적용하여 `article` 데이터의 사용 범위를 지정한다 .
 
+{% raw %}
 ```
 {{#article}}
 <tr>
@@ -180,9 +188,11 @@ model.addAttribute("article", articleEntity); [cite: 84]
 </tr>
 {{/article}}
 ```
+{% endraw %}
 
-10. 지정된 범위 블록 내부에서 데이터의 세부 필드인 `id`, `title`, `content` 속성을 호출하도록 이중 중괄호(`{{ }}`) 문법을 적용하여 수정한다 .
+10. 지정된 범위 블록 내부에서 데이터의 세부 필드인 `id`, `title`, `content` 속성을 호출하도록 이중 중괄호({% raw %}`{{ }}`) 문법을 적용하여 수정한다 .
 
+  {% raw %}
     ```
     {{#article}}
     <tr>
@@ -192,6 +202,7 @@ model.addAttribute("article", articleEntity); [cite: 84]
     </tr>
     {{/article}}
     ```
+  {% endraw %}
 
 11. 다시 서버를 재시작하고 `localhost:8080/articles/3`으로 접속을 시도하면 테이블 내에 데이터가 아무것도 출력되지 않는 현상이 발생한다.
 12. 현재 프로젝트가 가동 중인 데이터베이스 환경이 메모리 기반의 휘발성 DB이므로, 시스템 재시작 시점에 기존 적재 데이터가 삭제되기 때문이다. 조회를 정상적으로 확인하기 위해 `localhost:8080/articles/new` 페이지로 이동하여 신규 데이터를 입력하고 시스템에 제출(Submit)한다 . 
@@ -288,9 +299,9 @@ model.addAttribute("articleList", articleEntityList);
 ![사진10](/assets/img/posts/springboot3/springboot3_chap5_10.png)
 
 2. 실제 화면을 구현하기 위해 프로젝트 경로 내 `resources > templates > articles` 위치에서 마우스 오른쪽 버튼을 클릭하여 `index.mustache` 파일을 생성한다. 
-3. 파일 상단 영역에 `{{>layouts/header}}`를 배치하고 하단 영역에 `{{>layouts/footer}}` 레이아웃 템플릿을 추가하여 페이지의 기본 외곽 틀을 구성한다.
+3. 파일 상단 영역에 {% raw %}`{{>layouts/header}}`를 배치하고 하단 영역에 {% raw %}`{{>layouts/footer}}` 레이아웃 템플릿을 추가하여 페이지의 기본 외곽 틀을 구성한다.
 4. 조회 목록의 정돈된 연동을 위해 이전에 구현한 `show.mustache` 파일로 이동하여 `<table>` 태그로 이루어진 레이아웃 소스 코드를 전체 복사한 뒤, `index.mustache` 파일의 헤더와 푸터 태그 사이에 붙여넣는다. 
-5. 컨트롤러 모델에서 `"articleList"`라는 명칭으로 데이터를 등록했으므로, 복사해 온 코드의 머스테치 시작 범위 문법과 종료 범위 문법 변수명을 각각 `{{#articleList}}`와 `{{/articleList}}`로 수정한다
+5. 컨트롤러 모델에서 `"articleList"`라는 명칭으로 데이터를 등록했으므로, 복사해 온 코드의 머스테치 시작 범위 문법과 종료 범위 문법 변수명을 각각 {% raw %}`{{#articleList}}`와 {% raw %}`{{/articleList}}`로 수정한다
 
 ![사진11](/assets/img/posts/springboot3/springboot3_chap5_11.png)
 
