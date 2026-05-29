@@ -161,13 +161,7 @@ model.addAttribute("article", articleEntity); [cite: 84]
     ```
 
 2. 실제 파일을 생성하기 위해 프로젝트 탐색기에서 `resources > templates > articles` 디렉터리로 이동한 후, `show.mustache` 파일을 새로 만든다.
-3. 파일 내부에 공통 레이아웃 구조를 적용하기 위해 상단에는 {% raw %}`{{>layouts/header}}`, 하단에는 {% raw %}`{{>layouts/footer}}`를 작성한다.
-
-    ```
-    {{>layouts/header}}
-    {{>layouts/footer}}
-    ```
-
+3. 파일 내부에 공통 레이아웃 구조를 적용하기 위해 상단에는 `{>layouts/header}`, 하단에는 `{>layouts/footer}`를 작성한다.
 4. 화면에 데이터를 정돈하여 보여주기 위해 부트스트랩 웹사이트(getbootstrap.com) v5.0.2 버전에 접속하여 테이블(Tables) 구성 코드를 복사한다 . (사이트의 구조 변경 등으로 검색이 불가능한 경우 준비된 예제 소스 코드를 사용한다.)
 5. 복사한 HTML `<table>` 소스 코드를 `show.mustache` 파일의 헤더와 푸터 태그 레이아웃 사이에 붙여넣는다.
 
@@ -177,33 +171,7 @@ model.addAttribute("article", articleEntity); [cite: 84]
 7. 출력 포맷에 맞추어 표의 구조를 변경한다. 제목 행의 텍스트를 `Id`, `Title`, `Content`로 수정하고 불필요한 속성을 삭제한 뒤, 세 번째 행의 `scope="row"` 및 `colspan="2"` 설정을 제거하고 임시 테스트 데이터를 대입한다 .
 8. 코드를 빌드한 후 브라우저 화면을 새로고침하여 수정한 정적 임시 데이터가 표에 정상적으로 나타나는지 확인한다. 이는 실제 데이터가 연동되었을 때 표시될 레이아웃 구조를 점검하는 과정이다.
 9. 고정된 임시 데이터 대신 모델에 담긴 동적 데이터를 뷰 페이지와 연동한다. 머스테치 문법에서 모델 속성 객체를 사용하기 위해 `#` 기호로 시작하고 `/` 기호로 종료하는 문법을 적용하여 `article` 데이터의 사용 범위를 지정한다 .
-
-{% raw %}
-```
-{{#article}}
-<tr>
-    <th>1</th>
-    <td>제목1111</td>
-    <td>내용1111</td>
-</tr>
-{{/article}}
-```
-{% endraw %}
-
-10. 지정된 범위 블록 내부에서 데이터의 세부 필드인 `id`, `title`, `content` 속성을 호출하도록 이중 중괄호({% raw %}`{{ }}`) 문법을 적용하여 수정한다 .
-
-  {% raw %}
-    ```
-    {{#article}}
-    <tr>
-        <th>{{id}}</th>
-        <td>{{title}}</td>
-        <td>{{content}}</td>
-    </tr>
-    {{/article}}
-    ```
-  {% endraw %}
-
+10. 지정된 범위 블록 내부에서 데이터의 세부 필드인 `id`, `title`, `content` 속성을 호출하도록 이중 중괄호 문법을 적용하여 수정한다 .
 11. 다시 서버를 재시작하고 `localhost:8080/articles/3`으로 접속을 시도하면 테이블 내에 데이터가 아무것도 출력되지 않는 현상이 발생한다.
 12. 현재 프로젝트가 가동 중인 데이터베이스 환경이 메모리 기반의 휘발성 DB이므로, 시스템 재시작 시점에 기존 적재 데이터가 삭제되기 때문이다. 조회를 정상적으로 확인하기 위해 `localhost:8080/articles/new` 페이지로 이동하여 신규 데이터를 입력하고 시스템에 제출(Submit)한다 . 
 13. 생성 완료 후 다시 `localhost:8080/articles/1` 페이지에 접근하면 웹 브라우저에 에러 화면이 출력된다. 개발 환경 콘솔의 로그 내용을 상단으로 확인해 보면 `No default constructor for entity: com.example.firstproject.entity.Article` 에러 메시지가 발견된다 . 이는 JPA 명세상 `Article` 엔티티 클래스 내부에 매개변수가 없는 기본 생성자가 정의되어 있지 않아 인스턴스화에 실패했음을 의미한다.
@@ -299,9 +267,9 @@ model.addAttribute("articleList", articleEntityList);
 ![사진10](/assets/img/posts/springboot3/springboot3_chap5_10.png)
 
 2. 실제 화면을 구현하기 위해 프로젝트 경로 내 `resources > templates > articles` 위치에서 마우스 오른쪽 버튼을 클릭하여 `index.mustache` 파일을 생성한다. 
-3. 파일 상단 영역에 {% raw %}`{{>layouts/header}}`를 배치하고 하단 영역에 {% raw %}`{{>layouts/footer}}` 레이아웃 템플릿을 추가하여 페이지의 기본 외곽 틀을 구성한다.
+3. 파일 상단 영역에 `{>layouts/header}`를 배치하고 하단 영역에 `{>layouts/footer}` 레이아웃 템플릿을 추가하여 페이지의 기본 외곽 틀을 구성한다.
 4. 조회 목록의 정돈된 연동을 위해 이전에 구현한 `show.mustache` 파일로 이동하여 `<table>` 태그로 이루어진 레이아웃 소스 코드를 전체 복사한 뒤, `index.mustache` 파일의 헤더와 푸터 태그 사이에 붙여넣는다. 
-5. 컨트롤러 모델에서 `"articleList"`라는 명칭으로 데이터를 등록했으므로, 복사해 온 코드의 머스테치 시작 범위 문법과 종료 범위 문법 변수명을 각각 {% raw %}`{{#articleList}}`와 {% raw %}`{{/articleList}}`로 수정한다
+5. 컨트롤러 모델에서 `"articleList"`라는 명칭으로 데이터를 등록했으므로, 복사해 온 코드의 머스테치 시작 범위 문법과 종료 범위 문법 변수명을 각각 `{#articleList}`와 `{/articleList}`로 수정한다
 
 ![사진11](/assets/img/posts/springboot3/springboot3_chap5_11.png)
 
