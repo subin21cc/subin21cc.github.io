@@ -103,7 +103,7 @@ cdn:
 avatar: /assets/img/profile_no_background.png
 
 # 파비콘 설정
-favicon: /assets/img/favicon/favicon.ico
+favicon: /assets/img/favicon/favicon.png
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
