@@ -1,7 +1,7 @@
 ---
 title: "[스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술] 섹션 3. 스프링 웹 개발 기초"
 date: 2026-05-02 21:00:00 +0900
-categories: [ECC, Team-Project, Spring_intro]
+categories: [ECC, Team-Project-BE, Spring_intro]
 tags: [dev, study, java, spring]
 ---
 

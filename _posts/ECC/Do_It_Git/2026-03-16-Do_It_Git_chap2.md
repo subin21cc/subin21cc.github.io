@@ -1,7 +1,7 @@
 ---
 title: "[Do it! 5일 만에 끝내는 깃&깃허브 입문] 2장. 깃으로 버전 관리하기"
 date: 2026-03-16 14:30:00 +0900
-categories: [ECC, Team-Project, Do_It_Git]
+categories: [ECC, Team-Project-BE, Do_It_Git]
 tags: [dev, study, git]
 ---
 

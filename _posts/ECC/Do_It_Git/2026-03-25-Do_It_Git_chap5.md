@@ -1,7 +1,7 @@
 ---
 title: "[Do it! 5일 만에 끝내는 깃&깃허브 입문] 5장. 깃허브로 협업하기"
 date: 2026-03-25 14:00:00 +0900
-categories: [ECC, Team-Project, Do_It_Git]
+categories: [ECC, Team-Project-BE, Do_It_Git]
 tags: [dev, study, git]
 ---
 
