@@ -1,7 +1,7 @@
 ---
 title: "[SQL 첫걸음] 6장: 데이터베이스 객체 작성과 삭제"
 date: 2026-04-01 14:00:00 +0900
-categories: [ECC, Team-Project, SQL_First_Steps]
+categories: [ECC, Team-Project-BE, SQL_First_Steps]
 tags: [dev, study, sql]
 ---
 

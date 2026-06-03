@@ -1,7 +1,7 @@
 ---
 title: "[SQL 첫걸음] 3장: 정렬과 연산"
 date: 2026-03-24 14:00:00 +0900
-categories: [ECC, Team-Project, SQL_First_Steps]
+categories: [ECC, Team-Project-BE, SQL_First_Steps]
 tags: [dev, study, sql]
 ---
 

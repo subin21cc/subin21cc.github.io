@@ -1,7 +1,7 @@
 ---
 title: "[Do it! 5일 만에 끝내는 깃&깃허브 입문] 8장. 깃허브에 이력서 사이트와 블로그 만들기"
 date: 2026-03-25 15:10:00 +0900
-categories: [ECC, Team-Project, Do_It_Git]
+categories: [ECC, Team-Project-BE, Do_It_Git]
 tags: [dev, study, git]
 ---
 

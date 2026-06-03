@@ -1,7 +1,7 @@
 ---
 title: "[코딩 자율학습 스프링 부트 3 자바 백엔드 개발 입문] 3장. 게시판 만들고 새 글 작성하기: Create"
 date: 2026-05-25 17:00:00 +0900
-categories: [ECC, Team-Project, springboot3]
+categories: [ECC, Team-Project-BE, springboot3]
 tags: [dev, study, java, spring]
 render_with_liquid: false
 ---

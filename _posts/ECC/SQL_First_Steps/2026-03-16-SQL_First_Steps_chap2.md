@@ -1,7 +1,7 @@
 ---
 title: "[SQL 첫걸음] 2장: 테이블에서 데이터 검색"
 date: 2026-03-16 12:30:00 +0900
-categories: [ECC, Team-Project, SQL_First_Steps]
+categories: [ECC, Team-Project-BE, SQL_First_Steps]
 tags: [dev, study, sql]
 ---
 

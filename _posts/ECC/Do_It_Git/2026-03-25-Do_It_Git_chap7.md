@@ -1,7 +1,7 @@
 ---
 title: "[Do it! 5일 만에 끝내는 깃&깃허브 입문] 7장. VS Code에서 GUI 방식으로 사용하기"
 date: 2026-03-25 15:00:00 +0900
-categories: [ECC, Team-Project, Do_It_Git]
+categories: [ECC, Team-Project-BE, Do_It_Git]
 tags: [dev, study, git]
 ---
 

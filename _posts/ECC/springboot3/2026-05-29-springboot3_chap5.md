@@ -1,7 +1,7 @@
 ---
 title: "[코딩 자율학습 스프링 부트 3 자바 백엔드 개발 입문] 5장. 게시글 읽기: Read"
 date: 2026-05-29 14:00:00 +0900
-categories: [ECC, Team-Project, springboot3]
+categories: [ECC, Team-Project-BE, springboot3]
 tags: [dev, study, java, spring]
 ---
 
