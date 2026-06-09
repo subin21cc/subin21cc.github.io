@@ -17,7 +17,7 @@ tags: [dev, capstone]
 
 ### **2. Vercel을 활용한 배포 완료**
 
-제작한 페이지를 팀원 및 외부와 원활하게 공유하기 위해 **Vercel**을 활용하여 배포를 완료했다. 아래 링크에서 확인 가능하다.
+**Vercel**을 활용하여 배포를 완료했다. 아래 링크에서 확인 가능하다.
 
 - 🔗 **배포 주소:** https://sudo-capstone-project.vercel.app/
 ![사진1](/assets/img/posts/capstone/capstone-start-page_distribution.png)
