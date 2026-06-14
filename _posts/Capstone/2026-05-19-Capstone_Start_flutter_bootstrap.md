@@ -11,7 +11,7 @@ tags: [dev, capstone]
 
 ---
 
-전날 정리한 Q1~Q12에 대해 결정하였다. 핵심만 옮기면 이렇다.
+전날 정리한 Q1~Q12에 대해 결정하였습니다. 핵심만 옮기면 이렇습니다.
 
 | # | 결정 | 영향 |
 | --- | --- | --- |
@@ -24,7 +24,7 @@ tags: [dev, capstone]
 | Q11 | **`/oncare-flutter/` 베이스 경로** | 라이브 URL은 `https://<user>.github.io/oncare-flutter/`. |
 | Q12 | **Web만 CI 자동화** | iOS·Android 릴리즈 빌드는 수동. |
 
-이제 부트스트랩에 들어가도 되겠다는 판단이 섰다. 오늘 목표는 **빈 앱이 Android·iOS·Web 모두 빌드되고, main 브랜치 푸시 시 GitHub Pages가 자동으로 갱신되는 상태**까지 끌어올리는 것이다.
+이제 부트스트랩에 들어가도 되겠다고 판단했습니다. 오늘 목표는 **빈 앱이 Android·iOS·Web 모두 빌드되고, main 브랜치 푸시 시 GitHub Pages가 자동으로 갱신되는 상태**까지 끌어올리는 것이다.
 
 ## 1. `flutter create` — 한 줄이지만 무겁다
 
