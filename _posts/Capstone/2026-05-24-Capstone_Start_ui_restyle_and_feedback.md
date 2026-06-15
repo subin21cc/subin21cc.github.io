@@ -11,9 +11,9 @@ tags: [dev, capstone]
 
 ---
 
-어제 일주일치 작업을 한꺼번에 푸시하고 나니, 화면을 한 발 뒤로 물러나서 보게 됐다. 동작은 다 되는데 **자잘한 디테일이 React 원본과 어긋나 있는 부분**이 여러 군데 남아 있었다. 그리고 README는 여전히 ASCII art 다이어그램 그대로라 캡스톤 발표 자료에 그대로 쓸 수가 없다.
+어제 일주일치 작업을 한꺼번에 푸시하고 나니, 화면을 한 발 뒤로 물러나서 보게 됐습니다. 동작은 다 되는데 **자잘한 디테일이 React 원본과 어긋나 있는 부분**이 여러 군데 남아 있었습니다. 그리고 README는 여전히 ASCII art 다이어그램 그대로라 캡스톤 발표 자료에 그대로 쓸 수가 없습니다.
 
-오늘은 큰 기능을 더 짜기보다는 **두 개의 PR로 묶어서 정돈**하는 데 시간을 썼다.
+오늘은 큰 기능을 더 짜기보다는 **두 개의 PR로 묶어서 정돈**하는 데 시간을 썼습니다.
 
 1. **PR #12** — `feature/readme-diagrams-and-goldens` (오후 2시): README ASCII → SVG 다이어그램, golden 회귀 스냅샷 정리.
 2. **PR #13** — `feature/ui-card-restyle-and-feedback` (오후 3~4시): 카드 outlined 변형, robot 아이콘 통일, 식단/운동 페이지 디테일 정리.
@@ -21,14 +21,14 @@ tags: [dev, capstone]
 
 ## 1. README ASCII → SVG (PR #12)
 
-기존 README는 시스템 아키텍처, 데이터 흐름, 화면 트리를 모두 **```...```로 감싼 ASCII art**로 그려두고 있었다. 코드 리뷰는 편하지만, 발표 슬라이드에 캡처해서 넣으면 가독성이 너무 떨어진다. 화이트보드 사진처럼 보인다.
+기존 README는 시스템 아키텍처, 데이터 흐름, 화면 트리를 모두 **```...```로 감싼 ASCII art**로 그려두고 있었습니다. 코드 리뷰는 편하지만, 발표 슬라이드에 캡처해서 넣으면 가독성이 너무 떨어집니다.
 
 문제 해결 방법은 두 가지였다.
 
 - (A) Mermaid 차트로 옮기기 — GitHub README에서 자동 렌더링.
 - (B) 직접 SVG로 그리기.
 
-(A)가 빠르지만, 발표 슬라이드에 그대로 임베드하려면 결국 렌더링된 이미지를 추출해야 해서 작업이 두 번 들어간다. 그래서 **(B) SVG로 직접 그리기** 쪽으로 갔다. `assets/svg/` 디렉토리에 다이어그램 3장(시스템 아키텍처 / 데이터 흐름 / 화면 트리)을 두고, README는 `<img src="assets/svg/...svg" />` 태그로 임베드.
+(A)가 빠르지만, 발표 슬라이드에 그대로 임베드하려면 결국 렌더링된 이미지를 추출해야 해서 작업이 두 번 들어갑니다. 그래서 **(B) SVG로 직접 그리기** 쪽으로 갔습니다. `assets/svg/` 디렉토리에 다이어그램 3장(시스템 아키텍처 / 데이터 흐름 / 화면 트리)을 두고, README는 `<img src="assets/svg/...svg" />` 태그로 임베드.
 
 ```markdown
 ## 시스템 아키텍처
@@ -36,13 +36,13 @@ tags: [dev, capstone]
 <img src="assets/svg/system-architecture.svg" alt="On-Care 시스템 아키텍처" />
 ```
 
-SVG는 다크/라이트 모두 OK이도록 색을 토큰 단위에서 컨트롤. README에서 GitHub의 자동 다크 모드 변환도 자연스럽게 적용된다.
+SVG는 다크/라이트 모두 OK이도록 색을 토큰 단위에서 컨트롤. README에서 GitHub의 자동 다크 모드 변환도 자연스럽게 적용됩니다.
 
 ### Golden 실패 스냅샷 커밋
 
-같은 PR에 **golden test 실패 스냅샷**도 같이 박았다. Stage 6.3에서 `golden_toolkit`으로 atom 위젯들의 시각 회귀 가드를 깔아 뒀는데, 그 이후로 디자인 토큰 한두 개를 손대면서 일부 golden이 어긋난 상태였다. 평소엔 CI에서 차이만 출력하는데, **차이 PNG 자체를 레포에 같이 박아 두면** PR 리뷰어가 "어디가 어떻게 바뀌었나"를 한눈에 볼 수 있다.
+같은 PR에 **golden test 실패 스냅샷**도 같이 박았습니다. Stage 6.3에서 `golden_toolkit`으로 atom 위젯들의 시각 회귀 가드를 깔아 뒀는데, 그 이후로 디자인 토큰 한두 개를 손대면서 일부 golden이 어긋난 상태였습니다. 평소엔 CI에서 차이만 출력하는데, **차이 PNG 자체를 레포에 같이 박아 두면** PR 리뷰어가 "어디가 어떻게 바뀌었나"를 한눈에 볼 수 있습니다.
 
-`failures/` 디렉토리에 expected/actual/diff 3종 PNG를 넣고, 그 PR 안에서 master baseline을 갱신했다.
+`failures/` 디렉토리에 expected/actual/diff 3종 PNG를 넣고, 그 PR 안에서 master baseline을 갱신했습니다.
 
 ## 2. UI 카드 outlined 변형 (PR #13, 첫 커밋)
 
