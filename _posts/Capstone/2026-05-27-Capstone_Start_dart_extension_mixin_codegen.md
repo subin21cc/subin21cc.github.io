@@ -11,7 +11,7 @@ tags: [dev, capstone]
 
 ---
 
-이번 학기 마지막 학습 노트입니다. 시연 환경 안정화는 어제(5/26)까지 끝났고, 오늘은 캡스톤 코드를 다시 한 번 훑으면서 발견한 **Dart의 메타 패턴 3가지 — Extension methods, Mixin, build_runner를 통한 코드 생성**을 정리합니다.
+시연 환경 안정화는 어제(5/26)까지 끝났고, 오늘은 캡스톤 코드를 다시 한 번 훑으면서 발견한 **Dart의 메타 패턴 3가지 — Extension methods, Mixin, build_runner를 통한 코드 생성**을 정리합니다.
 
 이 세 가지는 처음 Flutter 코드를 볼 때 가장 낯설게 느껴졌던 키워드들입니다. `with WidgetsBindingObserver`, `extension StringX on String`, `*.g.dart` 자동 생성 파일이 어떤 메커니즘인지 처음에는 한 번씩 멈춰서 찾아봐야 했습니다. 검색해서 들어오신 분들께 도움이 될 만한 정리로 남깁니다.
 
