@@ -15,14 +15,14 @@ tags: [dev, capstone]
 
 - **참고 레퍼런스:**
   - *MVP와 PMF가 중요한 이유? #스타트업 #투자 #창업*
-  - *PMF(Pfoduct-Market Fit) 이해하기*
+  - *PMF(Product-Market Fit) 이해하기*
   - *스타트업 성공의 핵심 PMF 제품-시장 적합성 전략과 본질*
   - *How to Find Product Market Fit - Stanford CS183F: Startup School*
   - *Stanford Webinar - If I build it, will they come? Understanding Product-Market Fit*
 
 ---
 
-### [MVP와  PMF가 중요한 이유? #스타트업 #투자 #창업]
+### [MVP와 PMF가 중요한 이유? #스타트업 #투자 #창업]
 
 #### **주요 개념 정리**
 
@@ -39,7 +39,7 @@ tags: [dev, capstone]
 
 ---
 
-### [PMF(Pfoduct-Market Fit) 이해하기]
+### [PMF(Product-Market Fit) 이해하기]
 
 #### **1. PMF(Product-Market Fit)의 정의**
 
