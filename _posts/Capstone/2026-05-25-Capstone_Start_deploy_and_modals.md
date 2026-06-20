@@ -235,4 +235,4 @@ Tighten 체중 chart range to 70-75 with 1 kg gridlines
 
 ## 📌 요약
 
-README 배너 →  GitHub Pages 배포 디버깅 4단계(워크플로우 / path / base-href / WASM) → 식단 카메라+분석 UI 셸 + FAB 통일 + 건강 지표 추이 모달 + 설정 모달 4종 → 차트 Y축 임상 범위 클램핑. 라이브 시연 URL이 정상 동작하고, 발표 시나리오의 모든 흐름이 매끄럽게 흘러갈 수 있는 상태가 됐다.
+README 배너 → GitHub Pages 배포 디버깅 4단계(워크플로우 / path / base-href / WASM) → 식단 카메라+분석 UI 셸 + FAB 통일 + 건강 지표 추이 모달 + 설정 모달 4종 → 차트 Y축 임상 범위 클램핑. 라이브 시연 URL이 정상 동작하고, 발표 시나리오의 모든 흐름이 매끄럽게 흘러갈 수 있는 상태가 됐다.
