@@ -10,7 +10,6 @@ layout: default
   <section class="home-hero">
     <h1 class="home-greeting">Hi <span class="wave">👋</span></h1>
     <p class="home-type"><span class="home-type-text"></span><span class="home-type-caret">▋</span></p>
-    <p class="home-rotate">I build <span class="home-rotate-word">Flutter apps</span></p>
   </section>
 
   <!-- ===== Explore ===== -->
@@ -134,23 +133,6 @@ layout: default
   @keyframes home-caret-blink {
     0%, 50% { opacity: 1; }
     50.01%, 100% { opacity: 0; }
-  }
-  /* ⭐ rotating word line */
-  .home-rotate {
-    font-size: 1rem;
-    color: var(--home-muted);
-    margin: 0;
-    min-height: 1.45em;
-  }
-  .home-rotate-word {
-    display: inline-block;
-    color: var(--home-accent);
-    font-weight: 600;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  .home-rotate-word.is-swapping {
-    opacity: 0;
-    transform: translateY(6px);
   }
   /* ===== Section ===== */
   .home-section {
@@ -283,22 +265,8 @@ layout: default
       var i = 0;
       (function tick() {
         t.textContent = typed.slice(0, i);
-        if (i++ <= typed.length) { setTimeout(tick, 70); }
+        if (i++ <= typed.length) { setTimeout(tick, 100); }
       })();
-    }
-    /* ⭐ rotating word: cycle the accent word with a fade/slide swap */
-    var words = ['Flutter apps', 'AI features', 'the web', 'On-Care'];
-    var r = document.querySelector('.home-rotate-word');
-    if (r) {
-      var w = 0;
-      setInterval(function () {
-        r.classList.add('is-swapping');
-        setTimeout(function () {
-          w = (w + 1) % words.length;
-          r.textContent = words[w];
-          r.classList.remove('is-swapping');
-        }, 300);
-      }, 2300);
     }
   })();
 </script>
