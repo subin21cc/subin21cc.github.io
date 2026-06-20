@@ -10,7 +10,7 @@ order: 4
     <img class="about-avatar" src="{{ '/assets/img/profile_no_background.png' | relative_url }}" alt="Shin-SuBin" />
     <div class="about-intro-text">
       <h2 class="about-name">Shin-SuBin <span>신수빈</span></h2>
-      <p class="about-affil">Ewha Womans Univ. · Computer Science</p>
+      <p class="about-affil">Ewha Womans Univ. CSE</p>
       <p class="about-lead">배우고 만든 것을 코드와 함께 기록합니다.</p>
     </div>
   </section>
