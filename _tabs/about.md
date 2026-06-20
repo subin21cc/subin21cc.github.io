@@ -256,6 +256,15 @@ order: 4
   }
   .about-contact i { color: var(--about-accent); }
 
+  /* ===== Override Chirpy's `.content a:hover` (forces red #d2603a text + bottom border) ===== */
+  .about a.about-card:hover {
+    border-color: var(--about-accent) !important;
+  }
+  .about .about-contact a:hover {
+    color: var(--about-accent) !important;
+    border-color: var(--about-accent) !important;
+  }
+
   /* ===== Mobile ===== */
   @media (max-width: 576px) {
     .about-intro { flex-direction: column; text-align: center; gap: 0.9rem; }
