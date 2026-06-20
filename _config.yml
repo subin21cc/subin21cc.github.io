@@ -17,7 +17,7 @@ timezone:
 
 title: SUBIN.dev # the main title
 
-tagline: Hello World! I'm Subin. # it will display as the subtitle
+tagline: console.log(everything) # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   Subin's Blog
