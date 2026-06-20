@@ -1,0 +1,239 @@
+---
+layout: default
+# Custom landing page (overrides jekyll-theme-chirpy default post-list home)
+---
+
+{% include lang.html %}
+
+<div class="home-landing flex-grow-1 px-xl-1">
+  <!-- ===== Hero ===== -->
+  <section class="home-hero">
+    <h1 class="home-greeting">Hi <span class="wave">👋</span></h1>
+    <p class="home-univ">🏫 Ewha Womans Univ. CSE</p>
+  </section>
+
+  <!-- ===== Explore ===== -->
+  <section class="home-section">
+    <h2 class="home-section-title">Explore</h2>
+    <div class="home-grid">
+      <a class="home-card" href="{{ '/categories/capstone/' | relative_url }}">
+        <span class="home-card-icon">🎓</span>
+        <span class="home-card-title">Capstone</span>
+        <span class="home-card-desc">On-Care 졸업프로젝트 개발일지</span>
+        <span class="home-card-meta">{{ site.categories['Capstone'] | size }} posts</span>
+      </a>
+      <a class="home-card" href="{{ '/categories/ecc/' | relative_url }}">
+        <span class="home-card-icon">📚</span>
+        <span class="home-card-title">ECC</span>
+        <span class="home-card-desc">Ewha Computer Club</span>
+        <span class="home-card-meta">{{ site.categories['ECC'] | size }} posts</span>
+      </a>
+      <a class="home-card" href="{{ '/archives/' | relative_url }}">
+        <span class="home-card-icon">🗂️</span>
+        <span class="home-card-title">Archives</span>
+        <span class="home-card-desc">전체 글 시간순 보기</span>
+        <span class="home-card-meta">{{ site.posts | size }} posts</span>
+      </a>
+      <a class="home-card" href="{{ '/about/' | relative_url }}">
+        <span class="home-card-icon">👋</span>
+        <span class="home-card-title">About</span>
+        <span class="home-card-desc">소개 · 기술 스택 · 연락처</span>
+        <span class="home-card-meta">Profile</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== Recent posts ===== -->
+  <section class="home-section">
+    <h2 class="home-section-title">Recent Posts</h2>
+    <ul class="home-recent">
+      {% for post in site.posts limit: 5 %}
+        <li class="home-recent-item">
+          <a href="{{ post.url | relative_url }}">
+            <span class="home-recent-title">{{ post.title }}</span>
+            <time class="home-recent-date">
+              {% include datetime.html date=post.date lang=lang %}
+            </time>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+    <a class="home-more" href="{{ '/archives/' | relative_url }}">View all posts →</a>
+  </section>
+</div>
+
+<style>
+  /* ===== Accent (professional blue, mode-aware) ===== */
+  .home-landing {
+    --home-accent: #2563eb;
+    --home-accent-strong: #1d4ed8;
+    --home-accent-weak: rgba(37, 99, 235, 0.07);
+    --home-muted: #6b7280;
+
+    max-width: 46rem;
+    margin: 0 auto;
+    padding-top: 0.5rem;
+  }
+  html[data-mode='dark'] .home-landing {
+    --home-accent: #60a5fa;
+    --home-accent-strong: #3b82f6;
+    --home-accent-weak: rgba(96, 165, 250, 0.12);
+    --home-muted: #9ca3af;
+  }
+  @media (prefers-color-scheme: dark) {
+    html:not([data-mode='light']) .home-landing {
+      --home-accent: #60a5fa;
+      --home-accent-strong: #3b82f6;
+      --home-accent-weak: rgba(96, 165, 250, 0.12);
+      --home-muted: #9ca3af;
+    }
+  }
+
+  /* ===== Hero ===== */
+  .home-hero {
+    text-align: center;
+    padding: 2.75rem 0 2.5rem;
+  }
+  .home-greeting {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--heading-color);
+    margin: 0 0 0.7rem;
+  }
+  .home-greeting .wave {
+    display: inline-block;
+    transform-origin: 70% 70%;
+    animation: home-wave 2.4s ease-in-out 0.6s 2;
+  }
+  @keyframes home-wave {
+    0%, 60%, 100% { transform: rotate(0deg); }
+    15% { transform: rotate(14deg); }
+    30% { transform: rotate(-8deg); }
+    45% { transform: rotate(14deg); }
+  }
+  .home-univ {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--home-accent);
+    background: var(--home-accent-weak);
+    padding: 0.32rem 0.9rem;
+    border-radius: 2rem;
+    margin: 0;
+  }
+
+  /* ===== Section ===== */
+  .home-section {
+    margin-top: 2.6rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--main-border-color);
+  }
+  .home-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--heading-color);
+    margin: 0 0 1.1rem;
+  }
+  .home-section-title::before {
+    content: '';
+    width: 3px;
+    height: 1.05em;
+    border-radius: 2px;
+    background: var(--home-accent);
+  }
+
+  /* ===== Explore grid ===== */
+  .home-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+  .home-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.15rem 1.25rem;
+    border: 1px solid var(--main-border-color);
+    border-radius: 0.85rem;
+    background: var(--card-bg);
+    text-decoration: none;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .home-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--home-accent);
+    box-shadow: 0 6px 18px var(--home-accent-weak);
+  }
+  .home-card-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    margin-bottom: 0.55rem;
+  }
+  .home-card-title {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin-bottom: 0.35rem;
+  }
+  .home-card-desc {
+    font-size: 0.85rem;
+    color: var(--home-muted);
+    line-height: 1.5;
+    flex-grow: 1;
+  }
+  .home-card-meta {
+    margin-top: 0.85rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--home-accent);
+  }
+
+  /* ===== Recent posts ===== */
+  .home-recent { list-style: none; margin: 0; padding: 0; }
+  .home-recent-item { border-bottom: 1px solid var(--main-border-color); }
+  .home-recent-item:last-child { border-bottom: none; }
+  .home-recent-item a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.72rem 0.15rem;
+    text-decoration: none;
+  }
+  .home-recent-title {
+    color: var(--text-color);
+    font-size: 0.92rem;
+    line-height: 1.45;
+    transition: color 0.15s ease;
+  }
+  .home-recent-item a:hover .home-recent-title { color: var(--home-accent); }
+  .home-recent-date {
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    color: var(--text-color);
+    opacity: 0.5;
+    white-space: nowrap;
+  }
+  .home-more {
+    display: inline-block;
+    margin-top: 1.1rem;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--home-accent);
+    text-decoration: none;
+  }
+  .home-more:hover { text-decoration: underline; }
+
+  /* ===== Mobile ===== */
+  @media (max-width: 576px) {
+    .home-greeting { font-size: 1.8rem; }
+    .home-grid { grid-template-columns: 1fr; }
+    .home-recent-item a { flex-direction: column; gap: 0.15rem; }
+  }
+</style>
