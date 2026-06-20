@@ -164,23 +164,23 @@ order: 4
   }
 
   /* ===== Tech stack ===== */
-  .about-stack { display: flex; flex-direction: column; gap: 1rem; }
-  .stack-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.7rem; }
+  .about-stack { display: flex; flex-direction: column; gap: 0.45rem; }
+  .stack-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.55rem; }
   .stack-label {
-    flex: 0 0 7.5rem;
-    font-size: 0.86rem;
+    flex: 0 0 6rem;
+    font-size: 0.84rem;
     font-weight: 600;
     color: var(--text-color);
   }
   .stack-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .tag {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: 500;
     color: var(--text-color);
     background: var(--about-accent-weak);
     border: 1px solid transparent;
-    padding: 0.2rem 0.6rem;
-    border-radius: 0.5rem;
+    padding: 0.13rem 0.5rem;
+    border-radius: 0.45rem;
     transition: border-color 0.15s ease, color 0.15s ease;
   }
   .tag:hover { color: var(--about-accent); border-color: var(--about-accent); }
