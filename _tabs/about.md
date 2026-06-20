@@ -22,25 +22,25 @@ order: 4
       <div class="stack-row">
         <span class="stack-label">📱 Mobile · FE</span>
         <span class="stack-tags">
-          <span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">React</span><span class="tag">TypeScript</span>
+          <span class="stack-tag">Flutter</span><span class="stack-tag">Dart</span><span class="stack-tag">React</span><span class="stack-tag">TypeScript</span>
         </span>
       </div>
       <div class="stack-row">
         <span class="stack-label">🗄️ BE · Data</span>
         <span class="stack-tags">
-          <span class="tag">Spring Boot</span><span class="tag">FastAPI</span><span class="tag">drift</span><span class="tag">SQLite</span><span class="tag">MySQL</span>
+          <span class="stack-tag">Spring Boot</span><span class="stack-tag">FastAPI</span><span class="stack-tag">drift</span><span class="stack-tag">SQLite</span><span class="stack-tag">MySQL</span>
         </span>
       </div>
       <div class="stack-row">
         <span class="stack-label">🤖 AI · ML</span>
         <span class="stack-tags">
-          <span class="tag">YOLOv8</span><span class="tag">Gemini Vision</span><span class="tag">LangChain</span><span class="tag">Pinecone</span><span class="tag">GPT-4o</span>
+          <span class="stack-tag">YOLOv8</span><span class="stack-tag">Gemini Vision</span><span class="stack-tag">LangChain</span><span class="stack-tag">Pinecone</span><span class="stack-tag">GPT-4o</span>
         </span>
       </div>
       <div class="stack-row">
         <span class="stack-label">⚙️ Workflow</span>
         <span class="stack-tags">
-          <span class="tag">Git</span><span class="tag">GitHub Actions</span><span class="tag">Claude Code</span>
+          <span class="stack-tag">Git</span><span class="stack-tag">GitHub Actions</span><span class="stack-tag">Claude Code</span>
         </span>
       </div>
     </div>
@@ -173,17 +173,20 @@ order: 4
     color: var(--text-color);
   }
   .stack-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .tag {
-    font-size: 0.76rem;
+  /* renamed from `.tag` to avoid colliding with Chirpy's `.tag` (line-height:3rem) */
+  .stack-tag {
+    display: inline-block;
+    font-size: 0.78rem;
     font-weight: 500;
+    line-height: 1.5;
     color: var(--text-color);
     background: var(--about-accent-weak);
     border: 1px solid transparent;
-    padding: 0.13rem 0.5rem;
+    padding: 0.12rem 0.55rem;
     border-radius: 0.45rem;
     transition: border-color 0.15s ease, color 0.15s ease;
   }
-  .tag:hover { color: var(--about-accent); border-color: var(--about-accent); }
+  .stack-tag:hover { color: var(--about-accent); border-color: var(--about-accent); }
 
   /* ===== Category cards ===== */
   .about-cards {
