@@ -121,7 +121,7 @@ SELECT *, price * quantity AS amount FROM sample34
     WHERE price * quantity >= 2000;
 ```
 
-- WHERE구와  SELECT구의 내부처리 순서
+- WHERE구와 SELECT구의 내부처리 순서
   - WHERE 구 → SELECT 구
   - SELECT 구에서 지정한 별명은 WHERE 구 안에서 사용할 수 없다.
 

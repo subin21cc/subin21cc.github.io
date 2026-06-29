@@ -64,7 +64,7 @@ tags: [dev, study, git]
 
 - `git log` : 지금까지 만든 버전이 화면에 보이고 버전마다 설명도 함께 나타남
 - 커밋 해시(commit hash) 또는 깃 해시(git hash): 커밋을 구별하는 아이디
-- 커밋 로그: git log 명령 입력했을  때 나오는 정보
+- 커밋 로그: git log 명령 입력했을 때 나오는 정보
 
 ### 변경 사항 확인하기 - git diff
 
