@@ -11,7 +11,7 @@ tags: [dev, study, java, spring]
 
 ## 스프링 웹 개발 기초
 
-- 정적 컨텐츠
+- 정적 콘텐츠
   - **개념**: 서버에서 별도의 처리 없이 파일을 웹 브라우저에 그대로 내려주는 방식이다.
   - **특징**: `static` 폴더에 `index.html` 등을 올려두면 스프링 부트가 이를 그대로 제공한다. 사용자는 고정된 화면만 볼 수 있다.
 - MVC와 템플릿 엔진
@@ -30,9 +30,9 @@ tags: [dev, study, java, spring]
 
 ---
 
-# 7. 정적 컨텐츠
+# 7. 정적 콘텐츠
 
-- 스프링 부트 정적 컨텐츠 기능
+- 스프링 부트 정적 콘텐츠 기능
 - https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/html/spring-boot-features.html#boot-features-spring-mvc-static-content
 ![사진1](/assets/img/posts/spring_intro/spring_intro_sec3_1.png)
 
@@ -42,7 +42,7 @@ tags: [dev, study, java, spring]
 - http://localhost:8080/hello-static.html
 ![사진3](/assets/img/posts/spring_intro/spring_intro_sec3_3.png)
 
-### 정적 컨텐츠 이미지
+### 정적 콘텐츠 이미지
 ![사진4](/assets/img/posts/spring_intro/spring_intro_sec3_4.png)
 [1. 처리 프로세스]
 
@@ -53,8 +53,8 @@ tags: [dev, study, java, spring]
 
 [2. 핵심 요약]
 
-- **우선순위**: 스프링은 항상 **컨트롤러**가 정적 리소스보다 우선순위를 가집니다. 특정 경로의 컨트롤러가 있다면 정적 컨텐츠는 무시됩니다.
-- **경로**: 기본적으로 `src/main/resources/static` 위치에 있는 파일들이 정적 컨텐츠로 제공됩니다.
+- **우선순위**: 스프링은 항상 **컨트롤러**가 정적 리소스보다 우선순위를 가집니다. 특정 경로의 컨트롤러가 있다면 정적 콘텐츠는 무시됩니다.
+- **경로**: 기본적으로 `src/main/resources/static` 위치에 있는 파일들이 정적 콘텐츠로 제공됩니다.
 - **특징**: 서버에서 프로그래밍을 할 수 없으며, 작성된 파일 내용 그대로 화면에 출력됩니다.
 
 ---
