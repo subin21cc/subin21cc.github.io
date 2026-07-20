@@ -11,36 +11,35 @@ order: 5
     <div class="about-intro-text">
       <h2 class="about-name">Shin-SuBin <span>신수빈</span></h2>
       <p class="about-affil">Ewha Womans Univ. CSE</p>
-      <p class="about-lead">배우고 만든 것을 코드와 함께 기록합니다.</p>
     </div>
   </section>
 
-  <!-- ===== What I Work On ===== -->
+  <!-- ===== What I've Worked With ===== -->
   <section class="about-section">
-    <h2 class="about-title">What I Work On</h2>
+    <h2 class="about-title">What I've Worked With</h2>
     <div class="about-stack">
       <div class="stack-row">
-        <span class="stack-label">📱 Mobile · FE</span>
+        <span class="stack-label">📱 App · FE</span>
         <span class="stack-tags">
-          <span class="stack-tag">Flutter</span><span class="stack-tag">Dart</span><span class="stack-tag">React</span><span class="stack-tag">TypeScript</span>
+          <span class="stack-tag">Flutter</span><span class="stack-tag">Dart</span><span class="stack-tag">Riverpod</span><span class="stack-tag">drift</span><span class="stack-tag">React</span><span class="stack-tag">TypeScript</span><span class="stack-tag">Swing</span>
         </span>
       </div>
       <div class="stack-row">
-        <span class="stack-label">🗄️ BE · Data</span>
+        <span class="stack-label">🗄️ Backend · DB</span>
         <span class="stack-tags">
-          <span class="stack-tag">Spring Boot</span><span class="stack-tag">FastAPI</span><span class="stack-tag">drift</span><span class="stack-tag">SQLite</span><span class="stack-tag">MySQL</span>
+          <span class="stack-tag">Java</span><span class="stack-tag">Spring Boot</span><span class="stack-tag">FastAPI</span><span class="stack-tag">MySQL</span><span class="stack-tag">SQL</span>
         </span>
       </div>
       <div class="stack-row">
-        <span class="stack-label">🤖 AI · ML</span>
+        <span class="stack-label">📊 Data · AI</span>
         <span class="stack-tags">
-          <span class="stack-tag">YOLOv8</span><span class="stack-tag">Gemini Vision</span><span class="stack-tag">LangChain</span><span class="stack-tag">Pinecone</span><span class="stack-tag">GPT-4o</span>
+          <span class="stack-tag">Python</span><span class="stack-tag">Jupyter</span><span class="stack-tag">scikit-learn</span><span class="stack-tag">SHAP</span><span class="stack-tag">Vision·RAG</span>
         </span>
       </div>
       <div class="stack-row">
-        <span class="stack-label">⚙️ Workflow</span>
+        <span class="stack-label">🛠️ Systems · Tools</span>
         <span class="stack-tags">
-          <span class="stack-tag">Git</span><span class="stack-tag">GitHub Actions</span><span class="stack-tag">Claude Code</span>
+          <span class="stack-tag">C</span><span class="stack-tag">C++</span><span class="stack-tag">Linux</span><span class="stack-tag">Git</span><span class="stack-tag">GitHub Actions</span>
         </span>
       </div>
     </div>
@@ -134,13 +133,7 @@ order: 5
     font-size: 0.86rem;
     font-weight: 600;
     color: var(--about-accent);
-    margin: 0 0 0.5rem;
-  }
-  .about-lead {
-    font-size: 0.9rem;
-    color: var(--about-muted);
     margin: 0;
-    line-height: 1.5;
   }
 
   /* ===== Section ===== */
