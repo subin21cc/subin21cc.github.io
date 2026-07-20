@@ -11,7 +11,7 @@ order: 4
     <div class="proj-head">
       <span class="proj-icon">🥗</span>
       <h3 class="proj-title">On-Care</h3>
-      <span class="proj-badge">2026 졸업프로젝트</span>
+      <span class="proj-badge">2026 Capstone</span>
     </div>
     <p class="proj-desc">트레이너와 회원을 잇는 만성질환(고혈압·당뇨) 식단·운동 코칭 플랫폼. 음식 사진 한 장으로 AI(VLM)가 식단을 인식하고, 공공 영양 DB 보정과 RAG 코치로 맞춤 리포트를 제공하는 Flutter · FastAPI 앱.</p>
     <div class="proj-tech">
@@ -29,7 +29,7 @@ order: 4
     <div class="proj-head">
       <span class="proj-icon">📊</span>
       <h3 class="proj-title">은행 고객 이탈 예측 · XAI 대시보드</h3>
-      <span class="proj-badge">2026 신촌연합해커톤</span>
+      <span class="proj-badge">2026 Sinchon Hackathon</span>
     </div>
     <p class="proj-desc">고객 데이터로 은행 이탈을 예측하고, SHAP 기반 XAI로 이탈 요인까지 설명하는 Python 머신러닝 리텐션 대시보드.</p>
     <div class="proj-tech">
@@ -46,7 +46,7 @@ order: 4
     <div class="proj-head">
       <span class="proj-icon">💵</span>
       <h3 class="proj-title">Budget Flow</h3>
-      <span class="proj-badge">2026 개인 프로젝트</span>
+      <span class="proj-badge">2026 Personal Project</span>
     </div>
     <p class="proj-desc">수입·지출 기록과 예산 관리를 통합한 개인 재무 서비스. React · Spring Boot · MySQL로 구현한 풀스택 웹 애플리케이션.</p>
     <div class="proj-tech">
@@ -62,7 +62,7 @@ order: 4
     <div class="proj-head">
       <span class="proj-icon">🌷</span>
       <h3 class="proj-title">Daily Bloom</h3>
-      <span class="proj-badge">2025-2 인간컴퓨터상호작용</span>
+      <span class="proj-badge">2025-2 HCI</span>
     </div>
     <p class="proj-desc">팀원과 목표를 공유하며 함께 습관을 만드는 그룹 기반 앱. Gamification 설계와 Figma 기반 Low-fi Prototype, User Research·Persona·Usability Test까지 진행한 UX 프로젝트.</p>
     <div class="proj-tech">
@@ -78,7 +78,7 @@ order: 4
     <div class="proj-head">
       <span class="proj-icon">📅</span>
       <h3 class="proj-title">AI 맞춤형 시간표 &amp; 강의 추천</h3>
-      <span class="proj-badge">2025-1 소프트웨어융합창의설계</span>
+      <span class="proj-badge">2025-1 SW Convergence Design</span>
     </div>
     <p class="proj-desc">선호와 졸업 요건을 학습해 시간 충돌 없는 최적 시간표를 자동 생성하고, 강의평가 기반으로 맞춤 강의를 추천하는 Python AI 수강신청 서비스. 시험 일정 회피와 실시간 시각화·수정을 지원하는 지능형 시간표 도우미.</p>
     <div class="proj-tech">
@@ -91,7 +91,7 @@ order: 4
     <div class="proj-head">
       <span class="proj-icon">📦</span>
       <h3 class="proj-title">이화 물품 대여 서비스</h3>
-      <span class="proj-badge">2025-1 데이터베이스</span>
+      <span class="proj-badge">2025-1 Database</span>
     </div>
     <p class="proj-desc">수기로 관리되던 물품 대여를 시스템화. 사용자·관리자 권한에 따라 대여·반납·예약·로그를 통합 관리하는 MySQL + Java GUI 프로그램.</p>
     <div class="proj-tech">
