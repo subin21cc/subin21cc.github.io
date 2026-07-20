@@ -3,7 +3,7 @@ layout: page
 # The Archives of posts — overridden: year/month headings + title cards with date.
 ---
 
-<div id="archives" class="archives">
+<div class="archives">
   {% for post in site.posts %}
     {% assign cur_year = post.date | date: '%Y' %}
     {% assign cur_month = post.date | date: '%m' %}
@@ -87,14 +87,14 @@ layout: page
   .arch-list {
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
+    gap: 0.5rem;
   }
   .arch-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 0.72rem 1rem;
+    padding: 0.85rem 1.1rem;
     border: 1px solid var(--main-border-color);
     border-radius: 0.6rem;
     background: var(--card-bg);
