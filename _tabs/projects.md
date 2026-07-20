@@ -1,7 +1,7 @@
 ---
 title: Projects
 icon: fas fa-laptop-code
-order: 5
+order: 4
 ---
 
 <div class="projects">
