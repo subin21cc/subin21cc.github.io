@@ -160,10 +160,11 @@ order: 5
   .about-stack { display: flex; flex-direction: column; gap: 0.45rem; }
   .stack-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.55rem; }
   .stack-label {
-    flex: 0 0 6rem;
+    flex: 0 0 8rem;
     font-size: 0.84rem;
     font-weight: 600;
     color: var(--text-color);
+    white-space: nowrap;
   }
   .stack-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   /* renamed from `.tag` to avoid colliding with Chirpy's `.tag` (line-height:3rem) */
