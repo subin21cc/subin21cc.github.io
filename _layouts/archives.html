@@ -1,0 +1,133 @@
+---
+layout: page
+# The Archives of posts — overridden: year/month headings + title cards with date.
+---
+
+<div id="archives" class="archives">
+  {% for post in site.posts %}
+    {% assign cur_year = post.date | date: '%Y' %}
+    {% assign cur_month = post.date | date: '%m' %}
+
+    {% if cur_year != last_year %}
+      {% unless forloop.first %}</div>{% endunless %}
+      <h2 class="arch-year">{{ cur_year }}</h2>
+      <h3 class="arch-month">{{ post.date | date: '%-m' }}월</h3>
+      <div class="arch-list">
+      {% assign last_year = cur_year %}
+      {% assign last_month = cur_month %}
+    {% elsif cur_month != last_month %}
+      </div>
+      <h3 class="arch-month">{{ post.date | date: '%-m' }}월</h3>
+      <div class="arch-list">
+      {% assign last_month = cur_month %}
+    {% endif %}
+
+    <a class="arch-card" href="{{ post.url | relative_url }}">
+      <span class="arch-title">{{ post.title }}</span>
+      <time class="arch-date">{{ post.date | date: '%-d' }}일</time>
+    </a>
+
+    {% if forloop.last %}</div>{% endif %}
+  {% endfor %}
+</div>
+
+<style>
+  /* ===== Accent (matches home/about, mode-aware) ===== */
+  .archives {
+    --arch-accent: #2563eb;
+    --arch-accent-weak: rgba(37, 99, 235, 0.07);
+    --arch-muted: #6b7280;
+    max-width: 46rem;
+    padding-top: 0.5rem;
+  }
+  html[data-mode='dark'] .archives {
+    --arch-accent: #60a5fa;
+    --arch-accent-weak: rgba(96, 165, 250, 0.12);
+    --arch-muted: #9ca3af;
+  }
+  @media (prefers-color-scheme: dark) {
+    html:not([data-mode='light']) .archives {
+      --arch-accent: #60a5fa;
+      --arch-accent-weak: rgba(96, 165, 250, 0.12);
+      --arch-muted: #9ca3af;
+    }
+  }
+
+  /* ===== Year — big heading divider ===== */
+  .arch-year {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--heading-color);
+    margin: 2.2rem 0 0.2rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--main-border-color);
+  }
+  .archives .arch-year:first-child { margin-top: 0.3rem; }
+
+  /* ===== Month — sub heading with accent bar ===== */
+  .arch-month {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--arch-accent);
+    margin: 1.3rem 0 0.6rem;
+  }
+  .arch-month::before {
+    content: '';
+    width: 3px;
+    height: 1em;
+    border-radius: 2px;
+    background: var(--arch-accent);
+  }
+
+  /* ===== Post cards — title left, date right ===== */
+  .arch-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .arch-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.72rem 1rem;
+    border: 1px solid var(--main-border-color);
+    border-radius: 0.6rem;
+    background: var(--card-bg);
+    text-decoration: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .arch-card:hover {
+    border-color: var(--arch-accent);
+    box-shadow: 0 4px 14px var(--arch-accent-weak);
+    transform: translateY(-1px);
+  }
+  .arch-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--text-color);
+    transition: color 0.15s ease;
+  }
+  .arch-card:hover .arch-title { color: var(--arch-accent); }
+  .arch-date {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    color: var(--arch-muted);
+    white-space: nowrap;
+  }
+
+  /* ===== Override Chirpy's `.content a:hover` (red #d2603a underline) ===== */
+  .archives a.arch-card:hover {
+    border-color: var(--arch-accent) !important;
+  }
+
+  @media (max-width: 576px) {
+    .arch-card { padding: 0.62rem 0.85rem; }
+    .arch-title { font-size: 0.9rem; }
+  }
+</style>
