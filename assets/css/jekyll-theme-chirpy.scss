@@ -10,7 +10,8 @@
 
 /* append your custom style below */
 
-/* Remove the white ring (box-shadow border) around the sidebar avatar */
-#avatar {
-  box-shadow: none;
+/* Remove the white ring (box-shadow border) around the sidebar avatar.
+   Theme rule is `#sidebar #avatar` (2 ids) — must match specificity to override. */
+#sidebar #avatar {
+  box-shadow: none !important;
 }
