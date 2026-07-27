@@ -1,0 +1,16 @@
+---
+---
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+
+/* Remove the white ring (box-shadow border) around the sidebar avatar */
+#avatar {
+  box-shadow: none;
+}
