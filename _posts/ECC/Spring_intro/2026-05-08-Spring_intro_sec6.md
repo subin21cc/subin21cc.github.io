@@ -34,7 +34,7 @@ tags: [dev, study, java, spring]
 
 ### 회원 등록 폼 개발
 
-- 회원 등록 폼 컨트롤러 - `src/main/java/hello.hello_spring/controller/MemerController`
+- 회원 등록 폼 컨트롤러 - `src/main/java/hello.hello_spring/controller/MemberController`
   ![사진4](/assets/img/posts/spring_intro/spring_intro_sec6_4.png)
   ⇒ `/members/new` 경로로 들어오는 GET 요청을 처리하여 회원 등록 폼 화면을 반환하도록 설정된 컨트롤러 소스 코드이다.
 
