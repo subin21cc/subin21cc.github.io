@@ -68,7 +68,7 @@ tags: [dev, study, java, spring]
     ![사진9](/assets/img/posts/spring_intro/spring_intro_sec6_9.png)
     ⇒ `/members` 경로로 들어오는 GET 요청을 처리한다. `memberService.findMembers()`를 통해 전체 회원 리스트를 조회하고, 이를 `Model` 객체에 `"members"`라는 이름으로 담아 `memberList` 뷰로 넘겨준다.
 
-- 회원 리스트 HTML - `src/main/java/resources/templates/members/memberList.html`
+- 회원 리스트 HTML - `src/main/resources/templates/members/memberList.html`
   ![사진10](/assets/img/posts/spring_intro/spring_intro_sec6_10.png)
   ⇒ Thymeleaf의 `th:each` 문법을 사용하여 전달받은 회원 리스트를 반복 루프로 처리한다. 각 회원의 ID와 이름을 테이블(Table) 형식으로 동적으로 렌더링한다.
 
