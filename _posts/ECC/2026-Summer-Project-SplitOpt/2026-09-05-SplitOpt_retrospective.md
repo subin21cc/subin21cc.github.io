@@ -1,6 +1,6 @@
 ---
 title: "[ECC 2026 Summer Project] SplitOpt - 프로젝트 회고록"
-date: 2026-09-06 23:00:00 +0900
+date: 2026-09-05 23:00:00 +0900
 categories: [ECC, 2026-Summer-Project-SplitOpt]
 tags: [dev, project, splitopt, ecc, backend, retrospective]
 ---
