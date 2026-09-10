@@ -1,6 +1,6 @@
 ---
 title: "[SQL 첫걸음] 8장: 데이터베이스 설계"
-date: 2026-04-05 22:00:00 +0900
+date: 2026-04-06 22:00:00 +0900
 categories: [ECC, Team-Project-BE, SQL_First_Steps]
 tags: [dev, study, sql]
 ---
