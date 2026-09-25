@@ -193,7 +193,7 @@ test_target
 
 - 잘 섞인 훈련 세트로 훈련하고 테스트 세트로 평가했더니 정확도가 **1.0** 이 나왔다
 - `predict()`의 결과와 `test_target`이 같은 것을 보면 모두 정확히 맞혔음을 알 수 있다
-- 넘파이 배열을 반환하기 때문에 `predict()`의 출력도 넘파이 배열이다
+- 사이킷런 모델의 입력과 출력은 모두 **넘파이 배열**이다
 
 ![사진3](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap2_3.png)
 
