@@ -49,6 +49,7 @@ perch_weight = np.array(
 ```
 
 - 농어의 **길이**로 **무게**를 예측하는 문제. 타깃이 숫자이므로 회귀 문제다
+- 농어 56마리의 길이와 무게를 넘파이 배열로 준비했다. 이번에는 **길이가 특성, 무게가 타깃**이다
 
 ```python
 import matplotlib.pyplot as plt
@@ -74,6 +75,8 @@ train_input, test_input, train_target, test_target = train_test_split(
     perch_length, perch_weight, random_state=42)
 ```
 
+- 2장과 같은 방법으로 훈련 세트와 테스트 세트를 나눈다. 56개의 25%인 14개가 테스트 세트가 된다
+
 ```python
 print(train_input.shape, test_input.shape)
 ```
@@ -89,6 +92,8 @@ test_array = np.array([1,2,3,4])
 print(test_array.shape)
 ```
 
+- `reshape()`의 동작을 연습하기 위해 원소 4개짜리 1차원 배열을 만들었다
+
 ```
 (4,)
 ```
@@ -103,6 +108,7 @@ print(test_array.shape)
 ```
 
 - `reshape()`: 배열의 크기를 바꾼다. 바꾸기 전후의 **원소 개수가 같아야** 한다
+    - (4,) → (2, 2)는 원소가 4개로 같으므로 가능하다. (2, 3)처럼 개수가 다르면 에러가 난다
 
 ```python
 train_input = train_input.reshape(-1, 1)
@@ -118,6 +124,7 @@ print(train_input.shape, test_input.shape)
 ```
 
 - 크기에 `-1`을 지정하면 **나머지 원소 개수로 알아서 채운다**
+- `reshape(-1, 1)`은 "열은 1개, 행은 원소 수만큼"이라는 뜻이다. 그래서 (42,) → (42, 1), (14,) → (14, 1)인 2차원 배열이 됐다
 
 ### 결정계수(R²)
 
@@ -130,6 +137,8 @@ knr = KNeighborsRegressor()
 # k-최근접 이웃 회귀 모델을 훈련합니다
 knr.fit(train_input, train_target)
 ```
+
+- **KNeighborsRegressor**: k-최근접 이웃 **회귀** 클래스. 사용법은 분류 클래스와 같다
 
 ```python
 knr.score(test_input, test_target)
@@ -160,6 +169,8 @@ print(mae)
 ```
 
 - **평균 절댓값 오차(MAE)**: 타깃과 예측의 절댓값 오차를 평균한 값. 예측이 평균 19g 정도 타깃값과 다르다는 뜻
+- R²는 0.99라는 숫자만으로 감이 오지 않지만, MAE는 **타깃과 같은 단위(g)** 라서 오차가 얼마나 되는지 직관적으로 알 수 있다
+- 지금까지는 테스트 세트로만 평가했다. 훈련 세트로도 평가해 보면 어떨까?
 
 ### 과대적합 vs 과소적합
 
@@ -171,7 +182,9 @@ print(knr.score(train_input, train_target))
 0.9698823289099254
 ```
 
+- 같은 모델을 훈련 세트로 평가한 점수다
 - 훈련 세트 점수(0.9699)가 테스트 세트 점수(0.9928)보다 **낮다**
+- 보통은 훈련에 쓴 데이터라 훈련 세트 점수가 더 높아야 자연스럽다
 - **과대적합(overfitting)**: 훈련 세트 점수는 높은데 테스트 세트 점수가 크게 낮은 경우. 훈련 세트에만 잘 맞는 모델
 - **과소적합(underfitting)**: 훈련 세트보다 테스트 세트 점수가 높거나, 두 점수가 모두 너무 낮은 경우. 모델이 너무 단순한 것
     - 훈련 세트 크기가 작을 때도 일어날 수 있다
@@ -264,11 +277,14 @@ knr.fit(train_input, train_target)
 print(knr.predict([[50]]))
 ```
 
+- 3-1절처럼 이웃 개수를 3으로 한 모델로, 길이 50cm인 농어의 무게를 예측해 본다
+
 ```
 [1033.33333333]
 ```
 
 - 실제 50cm 농어의 무게는 1.5kg 정도인데 1033g으로 예측했다
+- 왜 이렇게 크게 틀렸는지 이웃을 그래프로 확인해 보자
 
 ```python
 import matplotlib.pyplot as plt
@@ -289,6 +305,8 @@ plt.ylabel('weight')
 plt.show()
 ```
 
+- 50cm 농어의 이웃은 43~44cm인 샘플 3개다. 훈련 세트에는 50cm만큼 큰 농어가 없다
+
 ```python
 print(np.mean(train_target[indexes]))
 ```
@@ -297,15 +315,21 @@ print(np.mean(train_target[indexes]))
 1033.3333333333333
 ```
 
+- 이웃 3개의 무게 평균이 예측값 1033과 정확히 같다. k-최근접 이웃 회귀는 **이웃 타깃의 평균**을 예측한다는 것을 다시 확인할 수 있다
+
 ![사진3](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap3_3.png)
 
 ```python
 print(knr.predict([[100]]))
 ```
 
+- 극단적으로 길이가 100cm인 농어로도 예측해 본다
+
 ```
 [1033.33333333]
 ```
+
+- 100cm 농어도 50cm 농어와 똑같이 1033g으로 예측했다
 
 ```python
 # 100cm 농어의 이웃을 구합니다
@@ -334,6 +358,8 @@ plt.show()
 from sklearn.linear_model import LinearRegression
 ```
 
+- 사이킷런의 선형 회귀 클래스. 선형 모델은 `sklearn.linear_model` 패키지에 있다
+
 ```python
 lr = LinearRegression()
 # 선형 회귀 모델 훈련
@@ -349,6 +375,9 @@ print(lr.predict([[50]]))
 [1241.83860323]
 ```
 
+- k-최근접 이웃(1033g)과 달리 50cm 농어의 무게를 1241.8g으로 더 크게 예측했다
+- 직선을 학습했기 때문에 훈련 세트 범위를 벗어나도 **직선을 연장해서** 예측할 수 있다
+
 ```python
 print(lr.coef_, lr.intercept_)
 ```
@@ -359,7 +388,9 @@ print(lr.coef_, lr.intercept_)
 
 - **모델 파라미터(model parameter)**: 머신러닝 알고리즘이 훈련하면서 찾은 값
     - `coef_`: 기울기(계수, 가중치), `intercept_`: 절편
+    - 사이킷런에서 학습한 값은 이름 끝에 밑줄(`_`)을 붙인다
 - 농어 무게 = 39.017 × 길이 − 709.019
+- 아래 그래프는 훈련 세트의 범위인 15~50 구간에서 이 직선을 그린 것이다. `plt.plot()`에 두 점의 x 좌표 [15, 50]과 y 좌표를 넘기면 두 점을 잇는 직선이 그려진다
 
 ```python
 # 훈련 세트의 산점도를 그립니다
@@ -385,6 +416,8 @@ print(lr.score(test_input, test_target))
 0.8247503123313558
 ```
 
+- 위가 훈련 세트, 아래가 테스트 세트의 R² 점수다
+
 - 훈련 세트 점수도 높지 않고 두 점수 차이도 크다 → 전체적으로 **과소적합**
 - 직선의 왼쪽 아래를 보면 길이가 짧을 때 **무게가 음수**가 되는 문제도 있다
 
@@ -396,6 +429,9 @@ print(lr.score(test_input, test_target))
 train_poly = np.column_stack((train_input ** 2, train_input))
 test_poly = np.column_stack((test_input ** 2, test_input))
 ```
+
+- `column_stack()`으로 **길이의 제곱**과 **원래 길이**를 나란히 붙여 특성 2개짜리 배열을 만든다
+- 넘파이 배열에 `** 2`를 하면 모든 원소가 각각 제곱된다 (브로드캐스팅)
 
 ```python
 print(train_poly.shape, test_poly.shape)
@@ -418,6 +454,9 @@ print(lr.predict([[50**2, 50]]))
 [1573.98423528]
 ```
 
+- 예측할 때도 훈련 데이터와 같은 형태로 [길이², 길이]를 넣어야 한다
+- 50cm 농어를 1574g으로 예측했다. 직선(1241.8g)보다 실제 무게 1.5kg에 훨씬 가깝다
+
 ```python
 print(lr.coef_, lr.intercept_)
 ```
@@ -427,6 +466,8 @@ print(lr.coef_, lr.intercept_)
 ```
 
 - 농어 무게 = 1.01 × 길이² − 21.6 × 길이 + 116.05
+- 길이²를 특성 하나로 보면 여전히 **선형 방정식**이다. 그래서 `LinearRegression`으로 학습할 수 있다
+- 짧은 직선을 이어 붙여 곡선처럼 그리기 위해 15~49 정수 배열 `point`를 만들고, 각 점에서 2차 방정식 값을 계산해 그린다
 
 ```python
 # 구간별 직선을 그리기 위해 15에서 49까지 정수 배열을 만듭니다
@@ -500,6 +541,7 @@ perch_full.head()
 - **판다스(pandas)**: 데이터 분석 라이브러리. **데이터프레임(DataFrame)** 이 대표 자료구조다
 - `read_csv()`로 CSV 파일을 읽어 데이터프레임으로 만들고, 넘파이 배열로 바꿔 사용할 수 있다
 - 이제 특성이 **길이·높이·두께** 3개가 되었다
+- `pd.read_csv()`에 URL을 넣으면 인터넷의 CSV 파일을 바로 읽을 수 있다. 이 데이터프레임을 그대로 사이킷런에 넣을 수도 있다
 
 ```python
 import numpy as np
@@ -515,11 +557,15 @@ perch_weight = np.array(
      )
 ```
 
+- 타깃인 농어 무게는 이전과 같은 넘파이 배열로 준비한다
+
 ```python
 from sklearn.model_selection import train_test_split
 
 train_input, test_input, train_target, test_target = train_test_split(perch_full, perch_weight, random_state=42)
 ```
+
+- 특성 3개짜리 `perch_full`과 무게 `perch_weight`를 훈련 세트와 테스트 세트로 나눈다
 
 ### 사이킷런의 변환기
 
@@ -538,6 +584,9 @@ print(poly.transform([[2, 3]]))
 ```
 [[1. 2. 3. 4. 6. 9.]]
 ```
+
+- 특성 2와 3을 넣었더니 2, 3과 함께 2² = 4, 2 × 3 = 6, 3² = 9가 추가되었다
+- `fit()`은 어떤 특성 조합을 만들지 정하고, `transform()`은 실제로 데이터를 변환한다
 
 - `PolynomialFeatures`: 각 특성을 제곱한 항과 특성끼리 곱한 항을 추가한다
 - 맨 앞의 `1`은 절편을 위한 항이다. 사이킷런 모델은 절편을 자동으로 추가하므로 필요 없다
@@ -567,9 +616,13 @@ print(train_poly.shape)
 (42, 9)
 ```
 
+- 특성 3개로 9개의 특성이 만들어졌다 (원래 특성 3개 + 제곱 3개 + 서로 곱한 것 3개)
+
 ```python
 poly.get_feature_names_out()
 ```
+
+- 출력은 `['x0', 'x1', 'x2', 'x0^2', 'x0 x1', 'x0 x2', 'x1^2', 'x1 x2', 'x2^2']`이다. `x0`이 길이, `x1`이 높이, `x2`가 두께다
 
 - `get_feature_names_out()`: 만들어진 특성이 어떤 조합으로 이루어졌는지 알려 준다
 - 훈련 세트로 `fit()`한 변환기를 그대로 사용해 테스트 세트를 변환해야 한다
@@ -601,6 +654,8 @@ print(lr.score(test_poly, test_target))
 ```
 
 - 특성을 늘렸더니 훈련 세트 점수가 크게 올랐고, 과소적합 문제가 사라졌다
+- 테스트 세트 점수(0.971)는 높아지지 않았지만, 훈련 세트(0.990)보다 낮아져 과소적합은 해결되었다
+- 그렇다면 특성을 더 많이 만들면 어떨까?
 
 ```python
 poly = PolynomialFeatures(degree=5, include_bias=False)
@@ -617,6 +672,8 @@ print(train_poly.shape)
 ```
 (42, 55)
 ```
+
+- `degree=5`로 지정해 5제곱까지의 항을 만들었더니 특성이 **55개**로 늘었다
 
 ```python
 lr.fit(train_poly, train_target)
@@ -657,6 +714,7 @@ test_scaled = ss.transform(test_poly)
 - 규제를 적용하기 전에 **특성의 스케일을 정규화**해야 한다. 스케일이 다르면 계수에 곱해지는 규제의 영향도 달라지기 때문
 - `StandardScaler`: 표준점수로 변환해 주는 사이킷런의 변환기. 2장에서 직접 계산한 것을 대신해 준다
 - 선형 회귀에 규제를 더한 모델이 **릿지(ridge)** 와 **라쏘(lasso)** 다
+- 여기서도 `StandardScaler`는 **훈련 세트로 `fit()`** 하고, 같은 기준으로 테스트 세트를 변환한다
 
 ### 릿지 회귀
 
@@ -683,6 +741,7 @@ print(ridge.score(test_scaled, test_target))
 ```
 
 - 특성이 55개인데도 훈련 세트 점수가 조금 낮아지고 테스트 세트 점수는 정상으로 돌아왔다
+    - 규제 없는 선형 회귀는 훈련 0.99999 / 테스트 −144였다. 릿지는 훈련 0.990 / 테스트 0.979로 균형이 맞는다
 
 ```python
 import matplotlib.pyplot as plt
@@ -690,6 +749,8 @@ import matplotlib.pyplot as plt
 train_score = []
 test_score = []
 ```
+
+- 적절한 규제 강도(alpha)를 찾기 위해, alpha 값마다 점수를 저장할 빈 리스트를 만든다
 
 ```python
 alpha_list = [0.001, 0.01, 0.1, 1, 10, 100]
@@ -715,6 +776,11 @@ plt.show()
 - **alpha**: 규제의 강도를 조절하는 매개변수. 값이 **크면 규제가 세져** 과소적합 쪽으로, **작으면** 과대적합 쪽으로 간다
 - **하이퍼파라미터(hyperparameter)**: 모델이 학습하는 값이 아니라 **사람이 지정해야 하는** 값
 - alpha 값을 로그 스케일(0.001, 0.01, ...)로 바꿔 가며 그래프를 그리면, 두 점수가 가장 가깝고 테스트 점수가 가장 높은 지점이 보인다
+- `plt.xscale('log')`: alpha 값이 10배씩 커지므로 x축을 로그 스케일로 바꿔 같은 간격으로 보이게 한다
+- 그래프에서 파란색이 훈련 세트, 주황색이 테스트 세트다
+    - 왼쪽(alpha가 작을 때)은 두 점수 차이가 커서 과대적합
+    - 오른쪽(alpha가 클 때)은 두 점수가 모두 낮아지는 과소적합
+    - 테스트 점수가 가장 높은 alpha = 0.1(10⁻¹)이 가장 적절하다
 
 ![사진8](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap3_8.png)
 
@@ -730,6 +796,8 @@ print(ridge.score(test_scaled, test_target))
 0.9903815817570367
 0.9827976465386928
 ```
+
+- alpha = 0.1로 다시 훈련했더니 훈련 0.990 / 테스트 0.983으로 두 점수가 높고 차이도 작다
 
 ### 라쏘 회귀
 
@@ -754,6 +822,8 @@ print(lasso.score(test_scaled, test_target))
 ```
 0.9800593698421883
 ```
+
+- 라쏘도 사용법은 릿지와 같다. 기본 alpha(1.0)로도 과대적합을 잘 억제했다
 
 ```python
 train_score = []
@@ -796,9 +866,14 @@ print(lasso.score(test_scaled, test_target))
 0.9824470598706695
 ```
 
+- 라쏘 그래프에서는 alpha가 10(10¹)일 때 테스트 점수가 가장 높았다. 이 값으로 다시 훈련한 결과다
+- 릿지와 마찬가지로 두 점수가 높고 차이도 작다
+
 ```python
 print(np.sum(lasso.coef_ == 0))
 ```
+
+- `lasso.coef_ == 0`은 계수가 0인 곳만 True인 배열이다. `np.sum()`은 True를 1로 세므로, 0인 계수의 개수가 된다
 
 ```
 40

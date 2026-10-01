@@ -49,12 +49,15 @@ fish_data = [[l, w] for l, w in zip(fish_length, fish_weight)]
 fish_target = [1]*35 + [0]*14
 ```
 
+- 1장처럼 길이·무게를 짝지은 2차원 리스트 `fish_data`와, 도미 1 / 빙어 0인 `fish_target`을 만든다
+
 ```python
 from sklearn.neighbors import KNeighborsClassifier
 
 kn = KNeighborsClassifier()
 ```
 
+- 이번에는 객체만 먼저 만들어 두고, 훈련 세트와 테스트 세트를 나눈 뒤에 훈련한다
 - 파이썬 리스트의 **인덱싱**과 **슬라이싱**으로 데이터를 나눌 수 있다
 
 ```python
@@ -64,6 +67,11 @@ print(fish_data[:5])
 print(fish_data[44:])
 ```
 
+- **인덱싱**: `fish_data[4]`는 다섯 번째 샘플 하나를 고른다 (인덱스는 0부터 시작)
+- **슬라이싱**: `[시작:끝]`으로 범위를 고른다. **끝 인덱스의 원소는 포함되지 않는다**
+    - `[0:5]`와 `[:5]`는 같다. 시작을 생략하면 처음부터
+    - `[44:]`처럼 끝을 생략하면 마지막 원소까지 고른다
+
 ```python
 train_input = fish_data[:35]
 train_target = fish_target[:35]
@@ -71,6 +79,8 @@ train_target = fish_target[:35]
 test_input = fish_data[35:]
 test_target = fish_target[35:]
 ```
+
+- 처음 35개를 훈련 세트로, 나머지 14개를 테스트 세트로 나눴다
 
 ```python
 kn.fit(train_input, train_target)
@@ -135,6 +145,8 @@ np.random.shuffle(index)
 print(index)
 ```
 
+- 0~48이 무작위로 섞인 배열이 출력된다. 이 순서대로 샘플을 꺼내면 데이터를 섞은 것과 같다
+
 ```python
 print(input_arr[[1,3]])
 ```
@@ -150,10 +162,15 @@ train_target = target_arr[index[:35]]
 print(input_arr[13], train_input[0])
 ```
 
+- 섞인 인덱스의 첫 번째 값이 13이므로, 훈련 세트의 첫 번째 샘플은 원래 데이터의 14번째 샘플이다. 두 값이 같게 출력되는 것으로 확인할 수 있다
+
 ```python
 test_input = input_arr[index[35:]]
 test_target = target_arr[index[35:]]
 ```
+
+- 섞인 인덱스의 앞 35개는 훈련 세트, 나머지 14개는 테스트 세트로 사용한다
+- `train_input[:, 0]`처럼 쓰면 모든 행의 첫 번째 열(길이)만, `[:, 1]`은 두 번째 열(무게)만 고른다. 아래 산점도에서 이 방식을 쓴다
 
 ```python
 import matplotlib.pyplot as plt
@@ -174,6 +191,8 @@ plt.show()
 ```python
 kn.fit(train_input, train_target)
 ```
+
+- 앞에서 만든 `kn` 객체에 섞어서 나눈 훈련 세트를 다시 훈련시킨다. `fit()`을 다시 호출하면 이전에 학습한 내용은 사라진다
 
 ```python
 kn.score(test_input, test_target)
@@ -235,11 +254,16 @@ import numpy as np
 np.column_stack(([1,2,3], [4,5,6]))
 ```
 
+- 결과는 `[[1, 4], [2, 5], [3, 6]]`이다. 두 리스트가 각각 하나의 열이 된다
+
 - `np.column_stack()`: 전달받은 리스트를 **일렬로 세운 다음 차례대로 나란히 연결**한다
 
 ```python
 fish_data = np.column_stack((fish_length, fish_weight))
 ```
+
+- 1장에서 `zip()`과 리스트 내포로 만들었던 2차원 데이터를 넘파이로 한 줄에 만든다
+- 연결할 리스트들은 **튜플**로 묶어 하나의 인자로 전달한다
 
 ```python
 print(fish_data[:5])
@@ -248,6 +272,8 @@ print(fish_data[:5])
 ```python
 print(np.ones(5))
 ```
+
+- `[1. 1. 1. 1. 1.]`처럼 1이 5개인 배열이 출력된다. 정수가 아니라 **실수**로 만들어진다
 
 ```python
 fish_target = np.concatenate((np.ones(35), np.zeros(14)))
@@ -274,7 +300,9 @@ train_input, test_input, train_target, test_target = train_test_split(
 
 - `train_test_split()`: 전달한 배열을 **섞은 뒤 훈련 세트와 테스트 세트로 나눠** 준다
 - 기본적으로 **25%를 테스트 세트**로 떼어 낸다
+- 49개의 25%는 12.25이므로, 테스트 세트는 올림해서 13개, 훈련 세트는 36개가 된다
 - `random_state`: 난수 초깃값을 지정해 실행할 때마다 같은 결과가 나오게 한다
+- 입력과 타깃을 넣으면 각각을 훈련용·테스트용으로 나눠 **4개의 배열**을 반환한다 (훈련 입력, 테스트 입력, 훈련 타깃, 테스트 타깃 순서)
 
 ```python
 print(train_input.shape, test_input.shape)
@@ -288,6 +316,8 @@ print(train_input.shape, test_input.shape)
 print(train_target.shape, test_target.shape)
 ```
 
+- 입력은 (샘플 수, 특성 수)인 2차원 배열이고, 타깃은 (36,), (13,)처럼 원소가 하나인 튜플로 표시되는 **1차원 배열**이다
+
 ```python
 print(test_target)
 ```
@@ -298,6 +328,8 @@ print(test_target)
 train_input, test_input, train_target, test_target = train_test_split(
     fish_data, fish_target, stratify=fish_target, random_state=42)
 ```
+
+- `stratify=fish_target`을 추가해 다시 나눈다. 이제 테스트 세트에도 도미와 빙어가 원래 비율대로 들어간다
 
 ```python
 print(test_target)
@@ -315,6 +347,8 @@ kn = KNeighborsClassifier()
 kn.fit(train_input, train_target)
 kn.score(test_input, test_target)
 ```
+
+- 고르게 나눈 데이터로 훈련하고 평가했더니 테스트 세트 정확도가 1.0이다. 그런데 여기서 이상한 생선이 하나 나타난다
 
 ```
 1.0
@@ -351,6 +385,7 @@ distances, indexes = kn.kneighbors([[25, 150]])
 ```
 
 - `kneighbors()`: 가장 가까운 이웃의 **거리**와 **인덱스**를 반환한다
+- 기본 이웃 개수가 5이므로 이웃 5개의 거리와 인덱스가 각각 배열로 담긴다
 
 ```python
 plt.scatter(train_input[:,0], train_input[:,1])
@@ -361,6 +396,8 @@ plt.ylabel('weight')
 plt.show()
 ```
 
+- 이웃 샘플만 `marker='D'`(마름모)로 다시 그려 어떤 샘플이 이웃인지 눈으로 확인한다
+
 ```python
 print(train_input[indexes])
 print(train_target[indexes])
@@ -368,6 +405,8 @@ print(distances)
 ```
 
 - 이웃 5개 중 **4개가 빙어**였다. 눈으로 보기에는 도미가 더 가까운데도 그렇다
+- `distances`를 출력해 보면 가장 가까운 도미까지의 거리는 약 92인데, 나머지 빙어들까지의 거리는 130~138 정도다
+    - 그래프에서는 92와 130의 차이가 이렇게 작아 보이지 않는다 → **x축과 y축의 범위가 달라서** 생기는 착시다
 
 ![사진5](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap2_5.png)
 
@@ -401,12 +440,17 @@ std = np.std(train_input, axis=0)
 print(mean, std)
 ```
 
+- 각 특성의 평균과 표준편차가 2개씩 출력된다 (길이와 무게)
+
 - `np.mean()`: 평균, `np.std()`: 표준편차
 - `axis=0`: 행을 따라 각 열의 통계를 계산한다 (특성별로 계산)
 
 ```python
 train_scaled = (train_input - mean) / std
 ```
+
+- 원본 데이터에서 평균을 빼고 표준편차로 나누면 표준점수가 된다
+- `train_input`은 (36, 2) 배열인데 `mean`, `std`는 원소 2개짜리 배열이다. 넘파이가 각 행마다 같은 계산을 반복해 준다
 
 - **브로드캐스팅(broadcasting)**: 크기가 다른 배열끼리 연산할 때 넘파이가 자동으로 크기를 맞춰 계산해 주는 기능
 
@@ -427,6 +471,8 @@ plt.show()
 new = ([25, 150] - mean) / std
 ```
 
+- 문제의 샘플 [25, 150]도 훈련 세트의 `mean`, `std`로 변환한다
+
 ```python
 plt.scatter(train_scaled[:,0], train_scaled[:,1])
 plt.scatter(new[0], new[1], marker='^')
@@ -440,6 +486,8 @@ plt.show()
 ```python
 kn.fit(train_scaled, train_target)
 ```
+
+- 표준점수로 바꾼 훈련 세트로 모델을 다시 훈련한다
 
 ```python
 test_scaled = (test_input - mean) / std
@@ -477,6 +525,7 @@ plt.show()
 ```
 
 - 이웃 5개가 모두 **도미**로 바뀌었다
+- 두 특성의 스케일을 맞추자 그래프의 x축과 y축 범위가 모두 −1.5~1.5 정도로 비슷해졌고, 거리 계산도 길이와 무게를 고르게 반영하게 됐다
 
 ![사진8](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap2_8.png)
 
