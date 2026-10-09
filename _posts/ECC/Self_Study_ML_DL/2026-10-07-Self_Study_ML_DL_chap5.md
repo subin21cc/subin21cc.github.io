@@ -158,9 +158,7 @@ plt.show()
 - `plot_tree()`: 결정 트리를 이해하기 쉬운 트리 그림으로 그려 준다
 - 그림이 매우 복잡하다. 맨 위에서 아래로 가지를 치며 내려가는 거꾸로 된 나무 모양이다
 
-<!-- 캡처: 결정 트리 전체 구조 그래프
 ![사진1](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap5_1.png)
--->
 
 ```python
 plt.figure(figsize=(10,7))
@@ -181,9 +179,7 @@ plt.show()
 - **정보 이득(information gain)**: 부모와 자식 노드의 **불순도 차이**. 결정 트리는 이 값이 최대가 되도록 나눈다
     - `criterion='entropy'`로 엔트로피 불순도를 쓸 수도 있다
 
-<!-- 캡처: 루트 노드와 자식 노드를 확대한 결정 트리
 ![사진2](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap5_2.png)
--->
 
 ```python
 dt = DecisionTreeClassifier(max_depth=3, random_state=42)
@@ -228,9 +224,7 @@ print(dt.score(test_input, test_target))
 - 결정 트리는 불순도를 기준으로 나누기만 하므로 **특성값의 스케일에 영향을 받지 않는다**
 - 표준화하지 않은 원본 데이터를 써도 점수가 똑같고, 대신 트리 그림의 기준값을 **그대로 읽을 수 있다** (예: 당도 ≤ 1.625)
 
-<!-- 캡처: 전처리하지 않은 데이터로 그린 결정 트리
 ![사진3](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap5_3.png)
--->
 
 ```python
 print(dt.feature_importances_)
@@ -391,9 +385,7 @@ print(np.mean(scores['test_score']))
 - `shuffle=True`: 폴드를 나누기 전에 데이터를 섞는다
 - `n_splits=10`: 10-폴드 교차 검증을 수행한다. 분할기 객체를 `cv` 매개변수로 전달한다
 
-<!-- 캡처: 10-폴드 교차 검증 결과
 ![사진4](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap5_4.png)
--->
 
 ### 하이퍼파라미터 튜닝
 
@@ -576,9 +568,7 @@ print(dt.score(test_input, test_target))
 
 - 마지막으로 최적 모델을 **테스트 세트**로 한 번만 평가한다. 검증 점수보다 조금 낮은 것이 일반적이다
 
-<!-- 캡처: 랜덤 서치로 찾은 최적 모델의 테스트 점수
 ![사진5](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap5_5.png)
--->
 
 ```python
 gs = RandomizedSearchCV(DecisionTreeClassifier(splitter='random', random_state=42), params,
@@ -838,9 +828,7 @@ hgb.score(test_input, test_target)
 
 - 테스트 세트 점수 0.872로, 앙상블 모델 중 하나를 최종 모델로 쓰면 5-2절의 결정 트리(0.86)보다 좋은 성능을 얻는다
 
-<!-- 캡처: 히스토그램 기반 그레이디언트 부스팅의 테스트 점수
 ![사진6](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap5_6.png)
--->
 
 ```python
 from xgboost import XGBClassifier
