@@ -1,12 +1,20 @@
-<!-- Desktop sidebar collapse toggle (state kept in localStorage) -->
+<!--
+  Desktop sidebar collapse (state kept in localStorage).
+  Reuses the theme's own hamburger button (#sidebar-trigger in the top bar): below 850px the
+  theme opens the sidebar as an overlay; from 850px up we take over the click and collapse it.
+-->
 <script>
   (function () {
     var KEY = 'sidebar-collapsed';
     var ATTR = 'data-sidebar-collapsed';
     var root = document.documentElement;
+    var desktop = window.matchMedia('(min-width: 850px)');
 
-    function isCollapsed() {
-      return root.hasAttribute(ATTR);
+    function sync() {
+      var btn = document.getElementById('sidebar-trigger');
+      if (btn) {
+        btn.setAttribute('aria-expanded', String(!root.hasAttribute(ATTR)));
+      }
     }
 
     /* apply the saved state before the first paint to avoid a flash */
@@ -16,29 +24,23 @@
       }
     } catch (e) {}
 
-    document.addEventListener('DOMContentLoaded', function () {
-      var btn = document.createElement('button');
-      btn.id = 'sidebar-collapse-toggle';
-      btn.type = 'button';
-      btn.innerHTML = '<i class="fas fa-chevron-left"></i>';
-
-      function sync() {
-        var label = isCollapsed() ? '사이드바 펼치기' : '사이드바 접기';
-        btn.setAttribute('aria-label', label);
-        btn.setAttribute('title', label);
-        btn.setAttribute('aria-expanded', String(!isCollapsed()));
-      }
-
-      btn.addEventListener('click', function () {
+    /* capture phase on document: runs before the theme's handler on the button */
+    document.addEventListener(
+      'click',
+      function (e) {
+        if (!desktop.matches || !e.target.closest('#sidebar-trigger')) {
+          return;
+        }
+        e.stopPropagation();
         root.toggleAttribute(ATTR);
         try {
-          localStorage.setItem(KEY, isCollapsed() ? '1' : '0');
-        } catch (e) {}
+          localStorage.setItem(KEY, root.hasAttribute(ATTR) ? '1' : '0');
+        } catch (err) {}
         sync();
-      });
+      },
+      true
+    );
 
-      sync();
-      document.body.appendChild(btn);
-    });
+    document.addEventListener('DOMContentLoaded', sync);
   })();
 </script>
