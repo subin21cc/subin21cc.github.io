@@ -204,6 +204,8 @@ plot_tree(dt, filled=True, feature_names=['alcohol', 'sugar', 'pH'])
 plt.show()
 ```
 
+![사진3](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap5_3.png)
+
 - 깊이 3의 트리를 그려 보면, 왼쪽 끝에서 세 번째 노드만 **음성 클래스(레드 와인)** 가 더 많다
     - 당도가 −0.239 이하이면서 −0.802 초과, 알코올 도수가 0.454 이하인 와인이 레드 와인으로 분류된다
 - 그런데 표준화된 값이라 "당도 −0.802"가 실제로 얼마인지 알기 어렵다
@@ -223,8 +225,6 @@ print(dt.score(test_input, test_target))
 
 - 결정 트리는 불순도를 기준으로 나누기만 하므로 **특성값의 스케일에 영향을 받지 않는다**
 - 표준화하지 않은 원본 데이터를 써도 점수가 똑같고, 대신 트리 그림의 기준값을 **그대로 읽을 수 있다** (예: 당도 ≤ 1.625)
-
-![사진3](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap5_3.png)
 
 ```python
 print(dt.feature_importances_)
