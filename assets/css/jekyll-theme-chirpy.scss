@@ -15,3 +15,71 @@
 #sidebar #avatar {
   box-shadow: none !important;
 }
+
+/* Collapsible sidebar on desktop (>= 850px, where the theme pins the sidebar).
+   Below 850px the theme's own hamburger trigger handles it, so the button is hidden.
+   The `[data-sidebar-collapsed]` attribute is set on <html> by _includes/metadata-hook.html. */
+#sidebar-collapse-toggle {
+  display: none;
+}
+
+@media all and (min-width: 850px) {
+  #sidebar,
+  #main-wrapper {
+    transition: transform 0.3s ease, margin-left 0.3s ease;
+  }
+
+  #sidebar-collapse-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 260px;
+    z-index: 2;
+    width: 1.1rem;
+    height: 3.5rem;
+    padding: 0;
+    transform: translateY(-50%);
+    border: 1px solid var(--sidebar-border-color);
+    border-left: 0;
+    border-radius: 0 0.5rem 0.5rem 0;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-muted-color);
+    font-size: 0.65rem;
+    cursor: pointer;
+    transition: left 0.3s ease, color 0.2s ease;
+
+    &:hover {
+      color: var(--sidebar-active-color);
+    }
+
+    i {
+      transition: transform 0.3s ease;
+    }
+  }
+
+  [data-sidebar-collapsed] {
+    #sidebar {
+      transform: translateX(-100%);
+    }
+
+    #main-wrapper {
+      margin-left: 0;
+    }
+
+    #sidebar-collapse-toggle {
+      left: 0;
+
+      i {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+@media all and (min-width: 1650px) {
+  #sidebar-collapse-toggle {
+    left: 300px;
+  }
+}

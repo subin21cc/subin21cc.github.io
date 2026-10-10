@@ -1,0 +1,44 @@
+<!-- Desktop sidebar collapse toggle (state kept in localStorage) -->
+<script>
+  (function () {
+    var KEY = 'sidebar-collapsed';
+    var ATTR = 'data-sidebar-collapsed';
+    var root = document.documentElement;
+
+    function isCollapsed() {
+      return root.hasAttribute(ATTR);
+    }
+
+    /* apply the saved state before the first paint to avoid a flash */
+    try {
+      if (localStorage.getItem(KEY) === '1') {
+        root.setAttribute(ATTR, '');
+      }
+    } catch (e) {}
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var btn = document.createElement('button');
+      btn.id = 'sidebar-collapse-toggle';
+      btn.type = 'button';
+      btn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+
+      function sync() {
+        var label = isCollapsed() ? '사이드바 펼치기' : '사이드바 접기';
+        btn.setAttribute('aria-label', label);
+        btn.setAttribute('title', label);
+        btn.setAttribute('aria-expanded', String(!isCollapsed()));
+      }
+
+      btn.addEventListener('click', function () {
+        root.toggleAttribute(ATTR);
+        try {
+          localStorage.setItem(KEY, isCollapsed() ? '1' : '0');
+        } catch (e) {}
+        sync();
+      });
+
+      sync();
+      document.body.appendChild(btn);
+    });
+  })();
+</script>
