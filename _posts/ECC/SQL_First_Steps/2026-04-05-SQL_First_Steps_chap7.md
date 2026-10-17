@@ -1,8 +1,8 @@
 ---
 title: "[SQL 첫걸음] 7장: 복수의 테이블 다루기"
 date: 2026-04-05 22:00:00 +0900
-categories: [ECC, Team-Project-BE, SQL_First_Steps]
-tags: [dev, study, sql]
+categories: [Study, Database]
+tags: [sql, ecc]
 ---
 
 ["SQL 첫걸음" 도서 바로가기](https://www.hanbit.co.kr/store/books/look.php?p_code=B1374950226)

@@ -1,8 +1,8 @@
 ---
 title: "[SQL 첫걸음] 5장: 집계와 서브쿼리"
 date: 2026-04-01 13:00:00 +0900
-categories: [ECC, Team-Project-BE, SQL_First_Steps]
-tags: [dev, study, sql]
+categories: [Study, Database]
+tags: [sql, ecc]
 ---
 
 ["SQL 첫걸음" 도서 바로가기](https://www.hanbit.co.kr/store/books/look.php?p_code=B1374950226)

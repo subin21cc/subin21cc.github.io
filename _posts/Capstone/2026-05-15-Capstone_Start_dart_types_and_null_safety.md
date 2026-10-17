@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] Dart 학습 — 변수 선언과 Null Safety"
 date: 2026-05-15 22:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, dart]
 ---
 
 **📅 일시:** 2026. 05. 15

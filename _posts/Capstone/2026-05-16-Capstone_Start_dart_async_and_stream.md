@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] Dart 학습 — Future, async/await, Stream"
 date: 2026-05-16 23:30:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, dart]
 ---
 
 **📅 일시:** 2026. 05. 16

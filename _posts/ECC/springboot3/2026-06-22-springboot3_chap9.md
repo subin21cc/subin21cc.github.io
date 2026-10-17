@@ -1,8 +1,8 @@
 ---
 title: "[코딩 자율학습 스프링 부트 3 자바 백엔드 개발 입문] 9장. CRUD와 SQL 쿼리 종합"
 date: 2026-06-22 12:00:00 +0900
-categories: [ECC, Team-Project-BE, springboot3]
-tags: [dev, study, java, spring]
+categories: [Study, Spring]
+tags: [spring, java, ecc]
 render_with_liquid: false
 ---
 

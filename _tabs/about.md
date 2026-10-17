@@ -49,23 +49,23 @@ order: 5
   <section class="about-section">
     <h2 class="about-title">Blog Categories</h2>
     <div class="about-cards">
-      <a class="about-card" href="{{ '/categories/capstone/' | relative_url }}">
-        <span class="about-card-head"><span class="about-card-icon">🎓</span> Capstone</span>
-        <span class="about-card-desc">On-Care 졸업프로젝트 개발일지</span>
-        <span class="about-card-meta">{{ site.categories['Capstone'] | size }} posts</span>
+      <a class="about-card" href="{{ '/categories/project/' | relative_url }}">
+        <span class="about-card-head"><span class="about-card-icon">🚀</span> Project</span>
+        <span class="about-card-desc">On-Care 캡스톤 · SplitOpt 개발일지</span>
+        <span class="about-card-meta">{{ site.categories['Project'] | size }} posts</span>
       </a>
-      <a class="about-card" href="{{ '/categories/ecc/' | relative_url }}">
-        <span class="about-card-head"><span class="about-card-icon">📚</span> ECC</span>
-        <span class="about-card-desc">Ewha Computer Club — 깃 · SQL · 스프링 학습</span>
-        <span class="about-card-meta">{{ site.categories['ECC'] | size }} posts</span>
+      <a class="about-card" href="{{ '/categories/study/' | relative_url }}">
+        <span class="about-card-head"><span class="about-card-icon">📚</span> Study</span>
+        <span class="about-card-desc">Spring · ML · SQL · Git 학습 기록 (ECC 스터디 포함)</span>
+        <span class="about-card-meta">{{ site.categories['Study'] | size }} posts</span>
       </a>
-      <a class="about-card" href="{{ '/categories/dev/' | relative_url }}">
-        <span class="about-card-head"><span class="about-card-icon">🧩</span> Dev</span>
+      <a class="about-card" href="{{ '/categories/blog/' | relative_url }}">
+        <span class="about-card-head"><span class="about-card-icon">🧩</span> Blog</span>
         <span class="about-card-desc">블로그 운영 · 환경 설정 메타 글</span>
-        <span class="about-card-meta">{{ site.categories['Dev'] | size }} posts</span>
+        <span class="about-card-meta">{{ site.categories['Blog'] | size }} posts</span>
       </a>
     </div>
-    <p class="about-note">현재는 세 카테고리이지만, 활동 영역이 넓어지는 대로 새 카테고리를 점진적으로 늘려갈 예정입니다.</p>
+    <p class="about-note">현재는 Project · Study · Blog 세 카테고리이지만, 활동 영역이 넓어지는 대로 새 카테고리를 점진적으로 늘려갈 예정입니다.</p>
   </section>
 
   <!-- ===== Contact ===== -->

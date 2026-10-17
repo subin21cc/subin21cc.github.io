@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] Dart 학습 — 함수 일급 객체와 클로저"
 date: 2026-05-18 21:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, dart]
 ---
 
 **📅 일시:** 2026. 05. 18

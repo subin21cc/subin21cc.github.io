@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] 스타트 단계 마무리 - 전체 정리/회고"
 date: 2026-06-22 16:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, planning]
 ---
 
 **📅 기간:** 2026. 06. 22 (2026. 03. 12 – 06. 22)

@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] Flutter 프로젝트 부트스트랩"
 date: 2026-05-19 22:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, flutter, dart]
 ---
 
 **📅 일시:** 2026. 05. 19

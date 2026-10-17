@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] Dart 학습 — Extension Methods, Mixin, Code Generation"
 date: 2026-05-27 23:30:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, dart]
 ---
 
 **📅 일시:** 2026. 05. 27

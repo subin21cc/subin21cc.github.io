@@ -1,8 +1,8 @@
 ---
 title: "[SQL 첫걸음] 4장: 데이터의 추가, 삭제, 갱신"
 date: 2026-03-24 15:00:00 +0900
-categories: [ECC, Team-Project-BE, SQL_First_Steps]
-tags: [dev, study, sql]
+categories: [Study, Database]
+tags: [sql, ecc]
 ---
 
 ["SQL 첫걸음" 도서 바로가기](https://www.hanbit.co.kr/store/books/look.php?p_code=B1374950226)

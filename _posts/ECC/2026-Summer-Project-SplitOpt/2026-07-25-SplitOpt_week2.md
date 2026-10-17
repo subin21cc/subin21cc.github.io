@@ -1,8 +1,8 @@
 ---
 title: "[ECC 2026 Summer Project] SplitOpt - Week 2"
 date: 2026-07-25 23:00:00 +0900
-categories: [ECC, 2026-Summer-Project-SplitOpt]
-tags: [dev, project, splitopt, ecc, backend]
+categories: [Project, SplitOpt]
+tags: [splitopt, ecc, backend]
 ---
 
 **기간:** 2026. 07. 20 – 07. 26 (2주차)

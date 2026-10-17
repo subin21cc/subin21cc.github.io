@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] Dart 학습 — Records, Patterns, Switch Expression"
 date: 2026-05-26 22:30:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, dart]
 ---
 
 **📅 일시:** 2026. 05. 26

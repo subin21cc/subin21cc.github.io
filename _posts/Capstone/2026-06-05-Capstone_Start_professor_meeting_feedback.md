@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] 스타트 마지막 지도 교수님 면담 — \"기술보다 차별점\""
 date: 2026-06-05 16:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, planning]
 ---
 
 **📅 일시:** 2026. 06. 05

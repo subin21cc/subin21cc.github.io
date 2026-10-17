@@ -1,8 +1,8 @@
 ---
 title: "[Do it! 5일 만에 끝내는 깃&깃허브 입문] 4장. 깃허브 시작하기"
 date: 2026-03-17 14:30:00 +0900
-categories: [ECC, Team-Project-BE, Do_It_Git]
-tags: [dev, study, git]
+categories: [Study, Git]
+tags: [git, ecc]
 ---
 
 ["Do it! 5일 만에 끝내는 깃&깃허브 입문" 도서 바로가기](https://www.yes24.com/product/goods/130093155)

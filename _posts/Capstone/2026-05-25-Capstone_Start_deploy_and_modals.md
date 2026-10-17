@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] GitHub Pages 배포 & 설정 모달"
 date: 2026-05-25 22:30:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, flutter, dart, github-pages]
 ---
 
 **📅 일시:** 2026. 05. 25

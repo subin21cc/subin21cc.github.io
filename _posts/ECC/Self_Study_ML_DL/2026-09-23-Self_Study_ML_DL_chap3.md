@@ -1,8 +1,8 @@
 ---
 title: "[혼자 공부하는 머신러닝+딥러닝] 3장. 회귀 알고리즘과 모델 규제"
 date: 2026-09-23 21:00:00 +0900
-categories: [ECC, Team-Study-MLDL, Self_Study_ML_DL]
-tags: [dev, study, ml, dl, python]
+categories: [Study, Machine Learning]
+tags: [ml, dl, python, ecc]
 ---
 
 ["혼자 공부하는 머신러닝+딥러닝(개정판)" 도서 바로가기](https://www.hanbit.co.kr/store/books/look.php?p_code=B7077594897)

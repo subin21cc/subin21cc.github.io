@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] Flutter 코어 인프라"
 date: 2026-05-20 23:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, flutter, dart]
 ---
 
 **📅 일시:** 2026. 05. 20

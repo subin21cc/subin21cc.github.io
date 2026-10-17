@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] 시나리오 - 1차 초안 (v1)"
 date: 2026-05-12 12:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, planning]
 ---
 
 **📅 일시:** 2026. 05. 12

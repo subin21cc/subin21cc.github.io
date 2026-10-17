@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] 아이디어 선정"
 date: 2026-03-12 16:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, planning]
 ---
 
 

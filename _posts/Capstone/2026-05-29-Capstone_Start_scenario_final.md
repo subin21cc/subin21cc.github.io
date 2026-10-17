@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] 시나리오 - 확정 (Self-Demo Guide)"
 date: 2026-05-29 20:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, planning]
 ---
 
 **📅 일시:** 2026. 05. 29

@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] PMF(Product-Market Fit)"
 date: 2026-04-25 12:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, planning]
 ---
 
 **📅 일시:** 2026. 04. 25

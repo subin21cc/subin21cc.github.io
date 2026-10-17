@@ -1,8 +1,8 @@
 ---
 title: "[코딩 자율학습 스프링 부트 3 자바 백엔드 개발 입문] 2장. MVC 패턴 이해와 실습"
 date: 2026-05-22 17:00:00 +0900
-categories: [ECC, Team-Project-BE, springboot3]
-tags: [dev, study, java, spring]
+categories: [Study, Spring]
+tags: [spring, java, ecc]
 render_with_liquid: false
 ---
 

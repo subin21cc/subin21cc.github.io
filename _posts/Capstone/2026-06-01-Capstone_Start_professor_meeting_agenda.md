@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] 지도교수 면담 안건 — 캡스톤 최종 점검 면담 준비기"
 date: 2026-06-01 21:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, planning]
 ---
 
 **📅 일시:** 2026. 06. 01

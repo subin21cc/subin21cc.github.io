@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] 프로젝트 소개 페이지 제작 및 배포"
 date: 2026-03-23 12:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, github-pages]
 ---
 
 **📅 일시:** 2026. 03. 22

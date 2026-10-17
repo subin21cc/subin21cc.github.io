@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] Gemini API 연동 및 식단 분석 기능 구현"
 date: 2026-04-12 12:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, gemini, ai]
 ---
 
 **📅 일시:** 2026. 04. 12

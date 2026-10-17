@@ -1,8 +1,8 @@
 ---
 title: "[SQL 첫걸음] 1장: 데이터베이스와 SQL"
 date: 2026-03-16 11:00:00 +0900
-categories: [ECC, Team-Project-BE, SQL_First_Steps]
-tags: [dev, study, sql]
+categories: [Study, Database]
+tags: [sql, ecc]
 ---
 
 ["SQL 첫걸음" 도서 바로가기](https://www.hanbit.co.kr/store/books/look.php?p_code=B1374950226)

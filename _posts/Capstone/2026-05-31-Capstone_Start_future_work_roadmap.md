@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] README \"What's Next\" 섹션 설계 — 그로쓰 단계 로드맵 정리"
 date: 2026-05-31 16:30:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, planning]
 ---
 
 **📅 일시:** 2026. 05. 31

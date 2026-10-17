@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] Prototype - 1st Revision"
 date: 2026-05-14 12:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, figma]
 ---
 
 **📅 일시:** 2026. 05. 14

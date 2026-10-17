@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] UI 카드 리스타일 & README 다이어그램"
 date: 2026-05-24 17:30:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, flutter, dart]
 ---
 
 **📅 일시:** 2026. 05. 24

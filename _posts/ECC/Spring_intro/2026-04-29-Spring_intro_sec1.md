@@ -1,8 +1,8 @@
 ---
 title: "[스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술] 섹션 1. 강의 소개"
 date: 2026-04-29 10:00:00 +0900
-categories: [ECC, Team-Project-BE, Spring_intro]
-tags: [dev, study, java, spring]
+categories: [Study, Spring]
+tags: [spring, java, ecc]
 ---
 
 ["스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술" 강의 바로가기](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8)

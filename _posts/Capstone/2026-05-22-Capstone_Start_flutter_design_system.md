@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] Flutter 디자인 시스템"
 date: 2026-05-22 22:30:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, flutter, dart]
 ---
 
 **📅 일시:** 2026. 05. 22

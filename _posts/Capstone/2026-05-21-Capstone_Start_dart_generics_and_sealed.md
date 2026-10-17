@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] Dart 학습 — Generics, Sealed Class, freezed"
 date: 2026-05-21 19:30:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, dart]
 ---
 
 **📅 일시:** 2026. 05. 21

@@ -1,8 +1,8 @@
 ---
 title: "[SQL 첫걸음] 8장: 데이터베이스 설계"
 date: 2026-04-06 22:00:00 +0900
-categories: [ECC, Team-Project-BE, SQL_First_Steps]
-tags: [dev, study, sql]
+categories: [Study, Database]
+tags: [sql, ecc]
 ---
 
 ["SQL 첫걸음" 도서 바로가기](https://www.hanbit.co.kr/store/books/look.php?p_code=B1374950226)

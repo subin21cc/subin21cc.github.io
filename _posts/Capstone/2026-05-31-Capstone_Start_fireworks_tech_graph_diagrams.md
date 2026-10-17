@@ -1,8 +1,8 @@
 ---
 title: "[Capstone-Start] fireworks-tech-graph 스킬로 README 다이어그램 SVG화"
 date: 2026-05-31 10:00:00 +0900
-categories: [Capstone, Start]
-tags: [dev, capstone]
+categories: [Project, On-Care]
+tags: [capstone, planning]
 ---
 
 **📅 일시:** 2026. 05. 31
