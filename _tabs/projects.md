@@ -13,7 +13,7 @@ order: 4
       <h3 class="proj-title">On-Care</h3>
       <span class="proj-badge">2026 Capstone</span>
     </div>
-    <p class="proj-desc">트레이너와 회원을 잇는 만성질환(고혈압·당뇨) 식단·운동 코칭 플랫폼. 음식 사진 한 장으로 AI(VLM)가 식단을 인식하고, 공공 영양 DB 보정과 RAG 코치로 맞춤 리포트를 제공하는 Flutter · FastAPI 앱.</p>
+    <p class="proj-desc">PT 회원과 트레이너를 잇는 식단·운동 관리 플랫폼. 음식 사진으로 AI(VLM)가 식단을 인식하고, 농진청·식약처·건강증진개발원 공공 데이터로 영양·칼로리를 보정해 RAG 코치와 트레이너용 주간 리포트로 연결하는 회원 앱 · 트레이너 웹 서비스(Flutter · FastAPI).</p>
     <div class="proj-tech">
       <span class="proj-chip">Flutter</span><span class="proj-chip">Dart</span><span class="proj-chip">Riverpod</span><span class="proj-chip">FastAPI</span><span class="proj-chip">Python</span><span class="proj-chip">Vision AI</span><span class="proj-chip">RAG</span>
     </div>
