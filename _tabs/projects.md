@@ -19,8 +19,9 @@ order: 4
     </div>
     <div class="proj-links">
       <a href="https://github.com/CSE-Sudo-26/sudo-capstone-project" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
-      <a href="https://ewhasudo.zapto.org/frontend/#/dashboard" target="_blank" rel="noopener noreferrer"><i class="fas fa-arrow-up-right-from-square"></i> Service</a>
-      <a href="https://ewhasudo.zapto.org" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i> Website</a>
+      <a href="https://oncarefit.com/member/" target="_blank" rel="noopener noreferrer"><i class="fas fa-mobile-screen"></i> Member App</a>
+      <a href="https://oncarefit.com/trainer/" target="_blank" rel="noopener noreferrer"><i class="fas fa-arrow-up-right-from-square"></i> Trainer Web</a>
+      <a href="https://oncarefit.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i> Website</a>
     </div>
   </div>
 
