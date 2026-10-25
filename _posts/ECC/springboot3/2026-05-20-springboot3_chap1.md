@@ -118,7 +118,7 @@ macOS에서 설치된 모든 JDK 라인업을 정확하게 확인하려면 아�
 
 스프링 부트를 실행할 때 로그에 찍히는 `Tomcat started on port(s): 8080` 문구는, 바로 이 서버 역할을 하는 **톰캣(Tomcat)이 8080번 포트에서 클라이언트의 요청을 받을 준비를 마쳤다**는 것을 의미한다.
 
-## 1.3.2 [localhost:8080/hello.html의](http://localhost:8080/hello.html의) 의미
+## 1.3.2 localhost:8080/hello.html의 의미
 
 주소창에 입력한 URL 주소 조각들은 저마다 중요한 의미를 담고 있다.
 
