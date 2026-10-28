@@ -77,9 +77,7 @@ plt.show()
     - 컴퓨터는 값이 큰 픽셀에 주목하므로, 관심 대상인 과일이 큰 값을 갖도록 바꾼 것
 - `cmap='gray_r'`: 다시 반전시켜 사람 눈에 익숙한 형태로 보여 준다
 
-<!-- 캡처: 사과 사진 한 장을 gray_r로 출력한 결과
 ![사진1](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_1.png)
--->
 
 ```python
 fig, axs = plt.subplots(1, 2)
@@ -92,9 +90,7 @@ plt.show()
     - `subplots(1, 2)`는 1행 2열로 그래프 2개를 만든다. 반환된 `axs`에 각 그래프가 배열로 담긴다
 - 인덱스 100은 파인애플의 첫 사진, 200은 바나나의 첫 사진이다
 
-<!-- 캡처: 파인애플과 바나나를 나란히 출력한 결과
 ![사진2](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_2.png)
--->
 
 ### 픽셀값 분석하기
 
@@ -135,9 +131,7 @@ plt.show()
 - **히스토그램**으로 보면 바나나는 픽셀 평균값이 확실히 낮다 (사진에서 차지하는 면적이 작기 때문)
 - 하지만 사과와 파인애플은 평균값이 겹쳐서 **사진 전체의 평균만으로는 구분할 수 없다**
 
-<!-- 캡처: 세 과일의 픽셀 평균값 히스토그램
 ![사진3](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_3.png)
--->
 
 ```python
 fig, axs = plt.subplots(1, 3, figsize=(20, 5))
@@ -152,9 +146,7 @@ plt.show()
 - 픽셀별로 보면 세 과일의 그래프 모양이 확실히 다르다
     - 사과는 아래쪽으로 갈수록 값이 높고, 파인애플은 비교적 고르게 높으며, 바나나는 중앙 픽셀값이 높다
 
-<!-- 캡처: 과일별 픽셀 평균 막대그래프 3개
 ![사진4](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_4.png)
--->
 
 ```python
 apple_mean = apple.mean(axis=0).reshape(100, 100)
@@ -171,9 +163,7 @@ plt.show()
 - 픽셀 평균을 다시 100 × 100으로 되돌려 이미지로 그리면 **과일의 대표 이미지**가 나온다
 - 이 평균 이미지와 가까운 사진을 고르면 같은 과일끼리 모을 수 있지 않을까?
 
-<!-- 캡처: 세 과일의 평균 이미지
 ![사진5](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_5.png)
--->
 
 ### 평균값과 가까운 사진 고르기
 
@@ -208,9 +198,7 @@ plt.show()
     - `axis('off')`: 좌표축을 그리지 않아 이미지만 깔끔하게 보이게 한다
 - 오차가 가장 작은 100장을 골랐더니 **모두 사과**였다
 
-<!-- 캡처: 사과 평균과 가장 가까운 100장
 ![사진6](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_6.png)
--->
 
 ```python
 abs_diff = np.abs(fruits - banana_mean)
@@ -228,6 +216,8 @@ plt.show()
 
 - 같은 방법으로 바나나 평균 이미지와 가까운 100장을 골라 본다
 - 대부분 바나나지만 사과나 파인애플이 몇 장 섞여 나온다. 평균값만으로는 완벽하지 않다
+
+![사진7](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_7.png)
 
 ### 비슷한 샘플끼리 모으기
 
@@ -334,7 +324,7 @@ draw_fruits(fruits[km.labels_==2])
 - 타깃 없이도 **거의 완벽하게 세 과일을 구분**했다
 
 <!-- 캡처: 클러스터별로 모인 과일 사진
-![사진7](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_7.png)
+![사진8](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_8.png)
 -->
 
 ### 클러스터 중심
@@ -347,7 +337,7 @@ draw_fruits(km.cluster_centers_.reshape(-1, 100, 100), ratio=3)
     - `fruits_2d`로 훈련했기 때문에 중심도 길이 10000인 1차원 배열이다. 이미지로 그리려면 (100, 100)으로 바꿔야 한다
 
 <!-- 캡처: k-평균이 찾은 클러스터 중심 이미지 3개
-![사진8](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_8.png)
+![사진9](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_9.png)
 -->
 
 ```python
@@ -414,7 +404,7 @@ plt.show()
     - 꺾이는 지점이 아주 뚜렷하지는 않지만 조금 꺾인 것을 볼 수 있다
 
 <!-- 캡처: k에 따른 이너셔 그래프(엘보우)
-![사진9](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_9.png)
+![사진10](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_10.png)
 -->
 
 ### 과일을 자동으로 분류하기
@@ -507,7 +497,7 @@ draw_fruits(pca.components_.reshape(-1, 100, 100))
 - 주성분을 이미지로 그려 보면 데이터에서 **가장 분산이 큰 방향**, 즉 과일의 특징적인 모양이 나타난다
 
 <!-- 캡처: 50개 주성분을 이미지로 그린 결과
-![사진10](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_10.png)
+![사진11](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_11.png)
 -->
 
 ```python
@@ -563,7 +553,7 @@ for start in [0, 100, 200]:
     - 일부는 흐리고 번진 부분이 있지만 전체적으로 과일 모양은 잘 복원됐다
 
 <!-- 캡처: 50개 주성분으로 복원한 과일 이미지
-![사진11](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_11.png)
+![사진12](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_12.png)
 -->
 
 ### 설명된 분산
@@ -589,7 +579,7 @@ plt.show()
     - 그래프가 처음에 급격히 떨어지고 그 뒤로는 거의 0에 가깝다. 나머지 주성분은 설명하는 분산이 작다
 
 <!-- 캡처: 주성분별 설명된 분산 그래프
-![사진12](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_12.png)
+![사진13](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_13.png)
 -->
 
 ### 다른 알고리즘과 함께 사용하기
@@ -713,7 +703,7 @@ plt.show()
 - 사과와 파인애플의 경계가 가까운 것도 눈으로 확인할 수 있다
 
 <!-- 캡처: 2개 주성분으로 그린 클러스터 산점도
-![사진13](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_13.png)
+![사진14](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_14.png)
 -->
 
 ### 주성분 분석으로 차원 축소
