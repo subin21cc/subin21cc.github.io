@@ -338,9 +338,7 @@ draw_fruits(km.cluster_centers_.reshape(-1, 100, 100), ratio=3)
 - `cluster_centers_`: 클러스터 중심. 앞 절에서 직접 만든 **평균 이미지와 매우 비슷하다**
     - `fruits_2d`로 훈련했기 때문에 중심도 길이 10000인 1차원 배열이다. 이미지로 그리려면 (100, 100)으로 바꿔야 한다
 
-<!-- 캡처: k-평균이 찾은 클러스터 중심 이미지 3개
 ![사진11](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_11.png)
--->
 
 ```python
 print(km.transform(fruits_2d[100:101]))
