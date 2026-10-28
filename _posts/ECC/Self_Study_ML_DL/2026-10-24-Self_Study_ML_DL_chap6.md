@@ -496,9 +496,7 @@ draw_fruits(pca.components_.reshape(-1, 100, 100))
 
 - 주성분을 이미지로 그려 보면 데이터에서 **가장 분산이 큰 방향**, 즉 과일의 특징적인 모양이 나타난다
 
-<!-- 캡처: 50개 주성분을 이미지로 그린 결과
 ![사진13](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_13.png)
--->
 
 ```python
 print(fruits_2d.shape)
@@ -552,9 +550,7 @@ for start in [0, 100, 200]:
 - 50개 특성만으로도 원본 이미지를 거의 그대로 되살릴 수 있다
     - 일부는 흐리고 번진 부분이 있지만 전체적으로 과일 모양은 잘 복원됐다
 
-<!-- 캡처: 50개 주성분으로 복원한 과일 이미지
 ![사진14](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_14.png)
--->
 
 ### 설명된 분산
 
@@ -578,9 +574,7 @@ plt.show()
 - 앞쪽 10개 주성분이 대부분의 분산을 설명한다
     - 그래프가 처음에 급격히 떨어지고 그 뒤로는 거의 0에 가깝다. 나머지 주성분은 설명하는 분산이 작다
 
-<!-- 캡처: 주성분별 설명된 분산 그래프
 ![사진15](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_15.png)
--->
 
 ### 다른 알고리즘과 함께 사용하기
 
@@ -702,9 +696,7 @@ plt.show()
 - 특성이 2개뿐이라 **산점도로 시각화**할 수 있다. 세 클러스터가 뚜렷하게 나뉘어 있다
 - 사과와 파인애플의 경계가 가까운 것도 눈으로 확인할 수 있다
 
-<!-- 캡처: 2개 주성분으로 그린 클러스터 산점도
 ![사진16](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_16.png)
--->
 
 ### 주성분 분석으로 차원 축소
 
