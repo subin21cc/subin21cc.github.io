@@ -310,22 +310,24 @@ def draw_fruits(arr, ratio=1):
 draw_fruits(fruits[km.labels_==0])
 ```
 
+![사진8](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_8.png)
+
 - `km.labels_==0`은 레이블이 0인 샘플만 True인 불리언 배열이다. 이것으로 해당 클러스터의 사진만 골라 그린다
 
 ```python
 draw_fruits(fruits[km.labels_==1])
 ```
 
+![사진9](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_9.png)
+
 ```python
 draw_fruits(fruits[km.labels_==2])
 ```
 
-- 레이블 1은 바나나만, 레이블 2는 파인애플만 모였고, 레이블 0에는 사과에 파인애플 몇 개가 섞였다
-- 타깃 없이도 **거의 완벽하게 세 과일을 구분**했다
+![사진10](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_10.png)
 
-<!-- 캡처: 클러스터별로 모인 과일 사진
-![사진8](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_8.png)
--->
+- 레이블 0은 대부분 파인애플이고 사과 10개와 바나나 2개가 섞였다. 레이블 1은 바나나만, 레이블 2는 사과만 모였다
+- 타깃 없이도 **거의 완벽하게 세 과일을 구분**했다
 
 ### 클러스터 중심
 
@@ -337,7 +339,7 @@ draw_fruits(km.cluster_centers_.reshape(-1, 100, 100), ratio=3)
     - `fruits_2d`로 훈련했기 때문에 중심도 길이 10000인 1차원 배열이다. 이미지로 그리려면 (100, 100)으로 바꿔야 한다
 
 <!-- 캡처: k-평균이 찾은 클러스터 중심 이미지 3개
-![사진9](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_9.png)
+![사진11](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_11.png)
 -->
 
 ```python
@@ -366,7 +368,7 @@ print(km.predict(fruits_2d[100:101]))
 draw_fruits(fruits[100:101])
 ```
 
-- 이 샘플을 그려 보면 파인애플이다. 레이블 0 클러스터에 파인애플이 일부 섞여 있던 것과 같은 경우다
+- 이 샘플을 그려 보면 파인애플이다. 레이블 0이 파인애플이 모인 클러스터이므로 제대로 분류된 것이다
 
 ```python
 print(km.n_iter_)
@@ -403,9 +405,7 @@ plt.show()
 - k = 3에서 그래프의 기울기가 바뀐다 → 클러스터 3개가 적절하다
     - 꺾이는 지점이 아주 뚜렷하지는 않지만 조금 꺾인 것을 볼 수 있다
 
-<!-- 캡처: k에 따른 이너셔 그래프(엘보우)
-![사진10](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_10.png)
--->
+![사진12](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_12.png)
 
 ### 과일을 자동으로 분류하기
 
@@ -497,7 +497,7 @@ draw_fruits(pca.components_.reshape(-1, 100, 100))
 - 주성분을 이미지로 그려 보면 데이터에서 **가장 분산이 큰 방향**, 즉 과일의 특징적인 모양이 나타난다
 
 <!-- 캡처: 50개 주성분을 이미지로 그린 결과
-![사진11](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_11.png)
+![사진13](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_13.png)
 -->
 
 ```python
@@ -553,7 +553,7 @@ for start in [0, 100, 200]:
     - 일부는 흐리고 번진 부분이 있지만 전체적으로 과일 모양은 잘 복원됐다
 
 <!-- 캡처: 50개 주성분으로 복원한 과일 이미지
-![사진12](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_12.png)
+![사진14](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_14.png)
 -->
 
 ### 설명된 분산
@@ -579,7 +579,7 @@ plt.show()
     - 그래프가 처음에 급격히 떨어지고 그 뒤로는 거의 0에 가깝다. 나머지 주성분은 설명하는 분산이 작다
 
 <!-- 캡처: 주성분별 설명된 분산 그래프
-![사진13](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_13.png)
+![사진15](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_15.png)
 -->
 
 ### 다른 알고리즘과 함께 사용하기
@@ -703,7 +703,7 @@ plt.show()
 - 사과와 파인애플의 경계가 가까운 것도 눈으로 확인할 수 있다
 
 <!-- 캡처: 2개 주성분으로 그린 클러스터 산점도
-![사진14](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_14.png)
+![사진16](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap6_16.png)
 -->
 
 ### 주성분 분석으로 차원 축소
