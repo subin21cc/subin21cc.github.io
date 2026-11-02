@@ -1,6 +1,6 @@
 ---
 title: "[혼자 공부하는 머신러닝+딥러닝] 7장. 딥러닝을 시작합니다"
-date: 2026-11-11 21:00:00 +0900
+date: 2026-11-02 21:00:00 +0900
 categories: [Study, Machine Learning]
 tags: [ml, dl, python, ecc]
 ---
