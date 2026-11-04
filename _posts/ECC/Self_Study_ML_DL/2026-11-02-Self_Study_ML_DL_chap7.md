@@ -7,7 +7,7 @@ tags: [ml, dl, python, ecc]
 
 ["혼자 공부하는 머신러닝+딥러닝(개정판)" 도서 바로가기](https://www.hanbit.co.kr/store/books/look.php?p_code=B7077594897)
 
-예제 코드 (저자 제공): [07-1](https://colab.research.google.com/github/rickiepark/hg-mldl2/blob/main/07-1.ipynb)
+예제 코드 (저자 제공): [07-1](https://colab.research.google.com/github/rickiepark/hg-mldl2/blob/main/07-1.ipynb), [07-2](https://colab.research.google.com/github/rickiepark/hg-mldl2/blob/main/07-2.ipynb)
 
 # 7장. 딥러닝을 시작합니다
 
@@ -69,9 +69,7 @@ for i in range(10):
 plt.show()
 ```
 
-<!-- 캡처: 패션 MNIST 샘플 10개
 ![사진1](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap7_1.png)
--->
 
 - 처음 10개 샘플을 1행 10열 그래프로 그렸다. `gray_r`로 반전시켜 배경을 흰색으로 보이게 했다
 
@@ -250,9 +248,7 @@ model.fit(train_scaled, train_target, epochs=5)
 - `epochs`: 반복할 에포크 횟수. 케라스는 에포크마다 손실과 정확도를 출력한다
 - 사이킷런처럼 `fit()`에 입력과 타깃을 전달한다
 
-<!-- 캡처: 5 에포크 훈련 진행 화면
 ![사진2](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap7_2.png)
--->
 
 ```python
 model.evaluate(val_scaled, val_target)
@@ -275,3 +271,256 @@ model.evaluate(val_scaled, val_target)
 4. **훈련과 평가**: `compile()` → `fit()` → `evaluate()` 순서로 진행 → 검증 정확도 약 0.85
 5. 같은 계산을 하는데도 신경망 쪽 성능이 더 좋다. 케라스는 **에포크마다 전체 데이터를 사용**하는 방식이 다르기 때문
 
+<hr>
+
+## 07-2. 심층 신경망
+
+### 2개의 층
+
+```python
+# 실행마다 동일한 결과를 얻기 위해 케라스에 랜덤 시드를 사용하고 텐서플로 연산을 결정적으로 만듭니다.
+import keras
+import tensorflow as tf
+
+keras.utils.set_random_seed(42)
+tf.config.experimental.enable_op_determinism()
+```
+
+```python
+import keras
+
+(train_input, train_target), (test_input, test_target) = \
+    keras.datasets.fashion_mnist.load_data()
+```
+
+```python
+from sklearn.model_selection import train_test_split
+
+train_scaled = train_input / 255.0
+train_scaled = train_scaled.reshape(-1, 28*28)
+
+train_scaled, val_scaled, train_target, val_target = train_test_split(
+    train_scaled, train_target, test_size=0.2, random_state=42)
+```
+
+- 1절과 똑같이 데이터를 정규화하고 1차원으로 편 뒤 검증 세트를 나눈다
+
+```python
+inputs = keras.layers.Input(shape=(784,))
+dense1 = keras.layers.Dense(100, activation='sigmoid')
+dense2 = keras.layers.Dense(10, activation='softmax')
+```
+
+- **은닉층(hidden layer)**: 입력층과 출력층 사이에 있는 층
+- `dense1`은 뉴런 100개에 시그모이드를 쓰는 은닉층, `dense2`는 뉴런 10개에 소프트맥스를 쓰는 출력층이다
+- 은닉층의 뉴런 개수는 정해진 규칙이 없다. 다만 **출력층의 뉴런보다는 많아야** 한다
+- 은닉층에는 활성화 함수가 꼭 필요하다. 없으면 두 층을 이어도 하나의 선형 계산으로 합쳐져 **층을 쌓는 의미가 사라진다**
+
+### 심층 신경망 만들기
+
+```python
+model = keras.Sequential([inputs, dense1, dense2])
+```
+
+- **심층 신경망(Deep Neural Network, DNN)**: 2개 이상의 층을 쌓은 인공 신경망
+- 리스트에 입력층, 은닉층, 출력층을 **순서대로** 넣어야 한다
+
+```python
+model.summary()
+```
+
+```
+ Total params: 79,510 (310.59 KB)
+ Trainable params: 79,510 (310.59 KB)
+ Non-trainable params: 0 (0.00 B)
+```
+
+- `summary()`: 층 구성, 출력 크기, 모델 파라미터 개수를 보여 준다
+- 은닉층: 784 × 100 + 100 = 78,500개, 출력층: 100 × 10 + 10 = 1,010개 → 합계 79,510개
+- 출력 크기의 첫 번째 차원이 `None`인 이유: **미니배치 크기**가 정해져 있지 않기 때문 (기본 배치 크기 32)
+
+![사진3](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap7_3.png)
+
+### 층을 추가하는 다른 방법
+
+```python
+model = keras.Sequential([
+    keras.layers.Input(shape=(784,)),
+    keras.layers.Dense(100, activation='sigmoid', name='은닉층'),
+    keras.layers.Dense(10, activation='softmax', name='출력층')
+], name='패션 MNIST 모델')
+```
+
+```python
+model.summary()
+```
+
+- `Sequential`에 층 객체를 **바로 전달**할 수 있고, 모델과 층에 `name`을 붙일 수도 있다
+
+```python
+model = keras.Sequential()
+model.add(keras.layers.Input(shape=(784,)))
+model.add(keras.layers.Dense(100, activation='sigmoid'))
+model.add(keras.layers.Dense(10, activation='softmax'))
+```
+
+```python
+model.summary()
+```
+
+- 이 방법은 층 객체를 따로 변수에 저장하지 않으므로 코드가 간결하다
+- `add()`: 층을 하나씩 추가하는 방법. 조건에 따라 층을 추가할 수 있어 유연하다
+
+```python
+model.compile(loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+model.fit(train_scaled, train_target, epochs=5)
+```
+
+- 은닉층을 추가했더니 1절보다 훈련 정확도가 올라갔다
+- 모델 구성 방식만 달라졌을 뿐 `compile()`과 `fit()` 사용법은 같다
+
+### 렐루 함수
+
+: 입력이 양수면 그대로 통과시키고, 음수면 0으로 만드는 활성화 함수 `max(0, z)`
+
+- 시그모이드 함수는 양 끝으로 갈수록 그래프가 **완만해져** 출력 변화가 작아진다 → 층이 깊어질수록 학습이 어렵다
+- 렐루는 계산이 간단하고, 특히 **이미지 처리**에서 좋은 성능을 낸다
+
+```python
+model = keras.Sequential()
+model.add(keras.layers.Input(shape=(28,28)))
+model.add(keras.layers.Flatten())
+model.add(keras.layers.Dense(100, activation='relu'))
+model.add(keras.layers.Dense(10, activation='softmax'))
+```
+
+- **Flatten 층**: 입력의 차원을 **일렬로 펴 주는** 층. 학습하는 파라미터는 없다
+    - 직접 `reshape()` 하지 않아도 되고, 입력 크기를 코드에서 바로 확인할 수 있다
+
+```python
+model.summary()
+```
+
+- `summary()`를 보면 Flatten 층의 출력이 784이고 파라미터는 0개다
+
+```python
+(train_input, train_target), (test_input, test_target) = \
+    keras.datasets.fashion_mnist.load_data()
+train_scaled = train_input / 255.0
+train_scaled, val_scaled, train_target, val_target = train_test_split(
+    train_scaled, train_target, test_size=0.2, random_state=42)
+```
+
+- 이번에는 Flatten 층이 펴 주므로 `reshape()`를 하지 않고 2차원 이미지 그대로 둔다
+
+```python
+model.compile(loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+model.fit(train_scaled, train_target, epochs=5)
+```
+
+```python
+model.evaluate(val_scaled, val_target)
+```
+
+```
+[0.37969112396240234, 0.8652499914169312]
+```
+
+- 시그모이드를 썼을 때보다 검증 정확도가 올랐다
+
+![사진4](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap7_4.png)
+
+### 옵티마이저
+
+: 신경망의 가중치와 절편을 학습하기 위한 **경사 하강법 알고리즘**. 케라스에서 골라 쓸 수 있는 하이퍼파라미터다
+
+```python
+model.compile(optimizer='sgd', loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+```
+
+- `compile()`의 기본 옵티마이저는 RMSprop이다. `optimizer='sgd'`로 확률적 경사 하강법을 지정할 수 있다
+
+```python
+sgd = keras.optimizers.SGD()
+model.compile(optimizer=sgd, loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+```
+
+- `'sgd'` 문자열은 `keras.optimizers.SGD` 객체를 기본 설정으로 만든 것과 같다
+
+```python
+sgd = keras.optimizers.SGD(learning_rate=0.1)
+```
+
+- 객체로 만들면 `learning_rate` 같은 매개변수를 직접 바꿀 수 있다 (기본값 0.01)
+
+```python
+sgd = keras.optimizers.SGD(momentum=0.9, nesterov=True)
+```
+
+- **모멘텀 최적화**: 이전 그레이디언트를 가속도처럼 사용한다 (보통 `momentum=0.9`)
+- **네스테로프 모멘텀**: 모멘텀 최적화를 두 번 반복해 구현한다
+
+```python
+adagrad = keras.optimizers.Adagrad()
+model.compile(optimizer=adagrad, loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+```
+
+```python
+rmsprop = keras.optimizers.RMSprop()
+model.compile(optimizer=rmsprop, loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+```
+
+- **적응적 학습률(adaptive learning rate)**: 모델이 최적점에 가까워지면 학습률을 자동으로 낮추는 방식
+    - `Adagrad`, `RMSprop`이 대표적이다
+
+```python
+model = keras.Sequential()
+model.add(keras.layers.Input(shape=(28,28)))
+model.add(keras.layers.Flatten())
+model.add(keras.layers.Dense(100, activation='relu'))
+model.add(keras.layers.Dense(10, activation='softmax'))
+```
+
+```python
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+model.fit(train_scaled, train_target, epochs=5)
+```
+
+```python
+model.evaluate(val_scaled, val_target)
+```
+
+```
+[0.3521900177001953, 0.8723333477973938]
+```
+
+- `optimizer='adam'`으로 지정해 다시 훈련했다. 기본 RMSprop보다 검증 정확도가 조금 더 높다
+
+- **Adam**: 모멘텀 최적화와 RMSprop의 장점을 합친 옵티마이저. 기본적으로 많이 쓰인다
+
+![사진5](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap7_5.png)
+
+### 케라스 API를 활용한 심층 신경망
+
+이번 절의 문제 해결 과정을 정리하면 다음과 같다.
+
+1. **은닉층 추가**: 입력층과 출력층 사이에 시그모이드 활성화 함수를 쓰는 밀집층을 추가 → 심층 신경망
+2. **층 추가 방법**: `Sequential`에 리스트로 전달 / `add()`로 하나씩 추가
+3. **Flatten 층**: `reshape()` 대신 층으로 입력을 펴서 코드가 더 명확해짐
+4. **활성화 함수 교체**: 시그모이드 → **렐루** → 검증 정확도 0.865
+5. **옵티마이저 교체**: 기본 RMSprop → **Adam** → 검증 정확도 0.872
+
+<hr>
+
+## 📌 정리
+
+- 패션 MNIST로 **인공 신경망**을 만들고, 케라스의 `compile()` → `fit()` → `evaluate()` 흐름을 익혔다
+- 은닉층을 추가해 **심층 신경망**을 만들고, 활성화 함수를 시그모이드에서 **렐루**로 바꿔 성능을 높였다
+- **옵티마이저**(SGD, 모멘텀, RMSprop, Adam)를 바꾸는 것만으로 학습 방식과 성능이 달라진다
+
+**핵심 용어**: 인공 신경망 / 밀집층 / 은닉층 / 심층 신경망 / 렐루 함수 / 옵티마이저 / Adam
