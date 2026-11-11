@@ -1,13 +1,13 @@
 ---
 title: "[혼자 공부하는 머신러닝+딥러닝] 7장. 딥러닝을 시작합니다"
-date: 2026-11-02 21:00:00 +0900
+date: 2026-11-11 21:00:00 +0900
 categories: [Study, Machine Learning]
 tags: [ml, dl, python, ecc]
 ---
 
 ["혼자 공부하는 머신러닝+딥러닝(개정판)" 도서 바로가기](https://www.hanbit.co.kr/store/books/look.php?p_code=B7077594897)
 
-예제 코드 (저자 제공): [07-1](https://colab.research.google.com/github/rickiepark/hg-mldl2/blob/main/07-1.ipynb), [07-2](https://colab.research.google.com/github/rickiepark/hg-mldl2/blob/main/07-2.ipynb)
+예제 코드 (저자 제공): [07-1](https://colab.research.google.com/github/rickiepark/hg-mldl2/blob/main/07-1.ipynb), [07-2](https://colab.research.google.com/github/rickiepark/hg-mldl2/blob/main/07-2.ipynb), [07-3](https://colab.research.google.com/github/rickiepark/hg-mldl2/blob/main/07-3.ipynb)
 
 # 7장. 딥러닝을 시작합니다
 
@@ -517,10 +517,359 @@ model.evaluate(val_scaled, val_target)
 
 <hr>
 
+## 07-3. 신경망 모델 훈련
+
+### 손실 곡선
+
+```python
+# 실행마다 동일한 결과를 얻기 위해 케라스에 랜덤 시드를 사용하고 텐서플로 연산을 결정적으로 만듭니다.
+import keras
+import tensorflow as tf
+
+keras.utils.set_random_seed(42)
+tf.random.set_seed(42)
+tf.config.experimental.enable_op_determinism()
+```
+
+```python
+import keras
+from sklearn.model_selection import train_test_split
+
+(train_input, train_target), (test_input, test_target) = \
+    keras.datasets.fashion_mnist.load_data()
+
+train_scaled = train_input / 255.0
+
+train_scaled, val_scaled, train_target, val_target = train_test_split(
+    train_scaled, train_target, test_size=0.2, random_state=42)
+```
+
+```python
+def model_fn(a_layer=None):
+    model = keras.Sequential()
+    model.add(keras.layers.Input(shape=(28,28)))
+    model.add(keras.layers.Flatten())
+    model.add(keras.layers.Dense(100, activation='relu'))
+    if a_layer:
+        model.add(a_layer)
+    model.add(keras.layers.Dense(10, activation='softmax'))
+    return model
+```
+
+- `a_layer`에 층을 전달하면 은닉층 뒤에 그 층을 추가하고, 전달하지 않으면 2절과 같은 모델이 만들어진다
+- 층을 하나 추가할 수 있도록 매개변수를 둔 **모델 생성 함수**를 만들어 두면 실험하기 편하다
+
+```python
+model = model_fn()
+model.summary()
+```
+
+```python
+model.compile(loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+history = model.fit(train_scaled, train_target, epochs=5, verbose=0)
+```
+
+- `fit()`은 **History 객체**를 반환한다. 에포크마다의 손실과 정확도가 들어 있다
+- `verbose=0`: 훈련 과정을 출력하지 않는다
+
+```python
+print(history.history.keys())
+```
+
+```
+dict_keys(['accuracy', 'loss'])
+```
+
+- `compile()`에서 `metrics=['accuracy']`를 지정했기 때문에 손실과 함께 정확도가 기록된다
+
+```python
+import matplotlib.pyplot as plt
+
+plt.plot(history.history['loss'])
+plt.xlabel('epoch')
+plt.ylabel('loss')
+plt.show()
+```
+
+```python
+plt.plot(history.history['accuracy'])
+plt.xlabel('epoch')
+plt.ylabel('accuracy')
+plt.show()
+```
+
+- 에포크마다 손실은 줄고 정확도는 올라간다
+
+<!-- 캡처: 에포크에 따른 손실 곡선
+![사진6](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap7_6.png)
+-->
+
+```python
+model = model_fn()
+model.compile(loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+history = model.fit(train_scaled, train_target, epochs=20, verbose=0)
+```
+
+```python
+plt.plot(history.history['loss'])
+plt.xlabel('epoch')
+plt.ylabel('loss')
+plt.show()
+```
+
+- 에포크를 20으로 늘리면 훈련 손실은 계속 줄어든다. 하지만 이것만으로는 과대적합인지 알 수 없다
+
+### 검증 손실
+
+```python
+model = model_fn()
+model.compile(loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+history = model.fit(train_scaled, train_target, epochs=20, verbose=0,
+                    validation_data=(val_scaled, val_target))
+```
+
+- `validation_data`: 에포크마다 검증 세트의 손실과 정확도를 함께 계산한다
+
+```python
+print(history.history.keys())
+```
+
+```
+dict_keys(['accuracy', 'loss', 'val_accuracy', 'val_loss'])
+```
+
+- 검증 세트에 대한 값은 `val_` 접두사가 붙은 키로 저장된다
+
+```python
+plt.plot(history.history['loss'], label='train')
+plt.plot(history.history['val_loss'], label='val')
+plt.xlabel('epoch')
+plt.ylabel('loss')
+plt.legend()
+plt.show()
+```
+
+- 훈련 손실은 계속 줄지만 검증 손실은 어느 지점부터 **다시 올라간다** → 그 지점부터 과대적합
+
+<!-- 캡처: 훈련 손실과 검증 손실 비교 그래프
+![사진7](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap7_7.png)
+-->
+
+```python
+model = model_fn()
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+history = model.fit(train_scaled, train_target, epochs=20, verbose=0,
+                    validation_data=(val_scaled, val_target))
+```
+
+```python
+plt.plot(history.history['loss'], label='train')
+plt.plot(history.history['val_loss'], label='val')
+plt.xlabel('epoch')
+plt.ylabel('loss')
+plt.legend()
+plt.show()
+```
+
+- 과대적합을 줄이기 위해 옵티마이저만 Adam으로 바꿔 같은 그래프를 그렸다
+- 옵티마이저를 Adam으로 바꾸니 과대적합이 줄고 검증 손실 곡선이 더 안정적이다
+
+### 드롭아웃
+
+: 훈련할 때 일부 뉴런의 출력을 **랜덤하게 0으로 만들어** 과대적합을 막는 기법
+
+- 특정 뉴런에 지나치게 의존하지 않게 되고, 여러 신경망을 앙상블한 것 같은 효과가 난다
+- 훈련이 끝난 뒤 **평가와 예측에서는 드롭아웃을 적용하지 않는다** (케라스가 알아서 처리한다)
+
+```python
+model = model_fn(keras.layers.Dropout(0.3))
+model.summary()
+```
+
+- `Dropout(0.3)`: 30%의 뉴런을 끈다. 학습하는 파라미터는 없다
+    - 앞에서 만든 `model_fn()`에 드롭아웃 층을 전달해 은닉층 뒤에 추가했다
+
+```python
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+history = model.fit(train_scaled, train_target, epochs=20, verbose=0,
+                    validation_data=(val_scaled, val_target))
+```
+
+```python
+plt.plot(history.history['loss'], label='train')
+plt.plot(history.history['val_loss'], label='val')
+plt.xlabel('epoch')
+plt.ylabel('loss')
+plt.legend()
+plt.show()
+```
+
+- 드롭아웃을 적용한 모델을 Adam으로 20 에포크 훈련하고 손실 곡선을 그렸다
+- 검증 손실이 다시 올라가는 시점이 늦춰지고, 두 곡선의 간격도 줄었다
+
+<!-- 캡처: 드롭아웃을 적용한 손실 곡선
+![사진8](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap7_8.png)
+-->
+
+### 모델 저장과 복원
+
+```python
+model = model_fn(keras.layers.Dropout(0.3))
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+history = model.fit(train_scaled, train_target, epochs=11, verbose=0,
+                    validation_data=(val_scaled, val_target))
+```
+
+- 앞 그래프에서 과대적합이 시작되기 전인 **11 에포크**만 다시 훈련했다
+
+```python
+model.save('model-whole.keras')
+```
+
+```python
+model.save_weights('model.weights.h5')
+```
+
+```python
+!ls -al model*
+```
+
+- `save()`: 모델 구조와 파라미터를 **모두** 저장한다
+- `save_weights()`: 학습한 **파라미터만** 저장한다
+- `!ls -al model*`로 두 파일이 만들어진 것을 확인한다
+
+```python
+model = model_fn(keras.layers.Dropout(0.3))
+model.load_weights('model.weights.h5')
+```
+
+```python
+import numpy as np
+
+val_labels = np.argmax(model.predict(val_scaled), axis=-1)
+print(np.mean(val_labels == val_target))
+```
+
+```
+0.8829166666666667
+```
+
+- `load_weights()`로 파라미터만 불러올 때는 **같은 구조의 모델**을 먼저 만들어야 한다
+- `predict()`는 샘플마다 10개 클래스의 확률을 반환한다. `axis=-1`은 마지막 차원(클래스 방향)을 따라 최댓값을 찾는다
+- 예측 레이블과 타깃을 비교한 불리언 배열의 평균이 곧 정확도다
+- `np.argmax()`: 소프트맥스 확률에서 가장 큰 값의 **인덱스(클래스)** 를 고른다
+
+```python
+model = keras.models.load_model('model-whole.keras')
+model.evaluate(val_scaled, val_target)
+```
+
+```
+[0.32348448038101196, 0.8829166889190674]
+```
+
+- `load_model()`: 모델 구조와 파라미터를 한 번에 복원한다. 컴파일 설정도 함께 복원되어 `evaluate()`를 바로 쓸 수 있다
+
+### 콜백
+
+: 훈련 과정 중간에 어떤 작업을 수행할 수 있게 해 주는 객체. `fit()`의 `callbacks` 매개변수에 전달한다
+
+```python
+model = model_fn(keras.layers.Dropout(0.3))
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+checkpoint_cb = keras.callbacks.ModelCheckpoint('best-model.keras',
+                                                save_best_only=True)
+model.fit(train_scaled, train_target, epochs=20, verbose=0,
+          validation_data=(val_scaled, val_target),
+          callbacks=[checkpoint_cb])
+```
+
+- `ModelCheckpoint`: 에포크마다 모델을 저장한다. `save_best_only=True`면 **검증 점수가 가장 좋은 모델만** 남긴다
+
+```python
+model = keras.models.load_model('best-model.keras')
+model.evaluate(val_scaled, val_target)
+```
+
+```
+[0.32222074270248413, 0.8847500085830688]
+```
+
+- `best-model.keras`에는 검증 손실이 가장 낮았던 에포크의 모델이 저장되어 있다
+- 여전히 20 에포크를 모두 훈련하므로, 과대적합 이후의 훈련은 낭비다
+
+```python
+model = model_fn(keras.layers.Dropout(0.3))
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+checkpoint_cb = keras.callbacks.ModelCheckpoint('best-model.keras',
+                                                save_best_only=True)
+early_stopping_cb = keras.callbacks.EarlyStopping(patience=2,
+                                                  restore_best_weights=True)
+history = model.fit(train_scaled, train_target, epochs=20, verbose=0,
+                    validation_data=(val_scaled, val_target),
+                    callbacks=[checkpoint_cb, early_stopping_cb])
+```
+
+- `EarlyStopping`: 검증 점수가 나아지지 않으면 훈련을 **조기 종료**한다
+    - `patience=2`: 2번 연속 나아지지 않으면 중단
+    - `restore_best_weights=True`: 가장 좋았던 파라미터로 되돌린다
+
+```python
+print(early_stopping_cb.stopped_epoch)
+```
+
+```
+12
+```
+
+- `stopped_epoch`는 0부터 세므로 13번째 에포크에서 훈련이 멈췄다
+    - `patience=2`이므로 최상의 모델은 그보다 2 에포크 전인 11번째 에포크다
+
+```python
+plt.plot(history.history['loss'], label='train')
+plt.plot(history.history['val_loss'], label='val')
+plt.xlabel('epoch')
+plt.ylabel('loss')
+plt.legend()
+plt.show()
+```
+
+```python
+model.evaluate(val_scaled, val_target)
+```
+
+```
+[0.3233264982700348, 0.8853333592414856]
+```
+
+- `restore_best_weights=True` 덕분에 모델은 가장 좋았던 파라미터 상태로 평가된다
+
+<!-- 캡처: 조기 종료가 적용된 손실 곡선
+![사진9](/assets/img/posts/Self_Study_ML_DL/Self_Study_ML_DL_chap7_9.png)
+-->
+
+### 최상의 신경망 모델 얻기
+
+이번 절의 문제 해결 과정을 정리하면 다음과 같다.
+
+1. **손실 곡선 확인**: `History` 객체로 에포크별 손실을 그려 훈련 상태를 관찰
+2. **검증 손실 추가**: `validation_data`로 과대적합이 시작되는 지점을 파악
+3. **옵티마이저 조정**: Adam으로 바꿔 과대적합 완화
+4. **드롭아웃 적용**: 30% 드롭아웃으로 훈련/검증 손실 간격을 더 줄임
+5. **콜백 사용**: `ModelCheckpoint`로 최상의 모델을 저장하고, `EarlyStopping`으로 적절한 시점에 훈련 종료 → 검증 정확도 약 0.885
+
+<hr>
+
 ## 📌 정리
 
 - 패션 MNIST로 **인공 신경망**을 만들고, 케라스의 `compile()` → `fit()` → `evaluate()` 흐름을 익혔다
 - 은닉층을 추가해 **심층 신경망**을 만들고, 활성화 함수를 시그모이드에서 **렐루**로 바꿔 성능을 높였다
 - **옵티마이저**(SGD, 모멘텀, RMSprop, Adam)를 바꾸는 것만으로 학습 방식과 성능이 달라진다
+- 손실 곡선과 검증 손실로 과대적합 시점을 파악하고, **드롭아웃과 콜백**(체크포인트, 조기 종료)으로 최상의 모델을 얻는다
 
-**핵심 용어**: 인공 신경망 / 밀집층 / 은닉층 / 심층 신경망 / 렐루 함수 / 옵티마이저 / Adam
+**핵심 용어**: 인공 신경망 / 밀집층 / 은닉층 / 심층 신경망 / 렐루 함수 / 옵티마이저 / Adam / 손실 곡선 / 검증 손실 / 드롭아웃 / 콜백 / 조기 종료
