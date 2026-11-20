@@ -171,7 +171,7 @@ SELECT amount, ROUND(amount, 1) FROM sample341;
 | `||` | 문자열 결합 | Oracle, DB2, PostgreSQL |
 | CONCAT | 문자열 결합 | MySQL      |
 
-## 2. SUBSTRING 함수
+### 2. SUBSTRING 함수
 
 : 문자열의 일부분을 계산해서 반환해주는 함수
 
