@@ -190,7 +190,7 @@ print(knr.score(train_input, train_target))
     - 훈련 세트 크기가 작을 때도 일어날 수 있다
 
 ```python
-# 이웃의 갯수를 3으로 설정합니다
+# 이웃의 개수를 3으로 설정합니다
 knr.n_neighbors = 3
 # 모델을 다시 훈련합니다
 knr.fit(train_input, train_target)
