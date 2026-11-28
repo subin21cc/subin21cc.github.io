@@ -25,6 +25,22 @@ order: 4
     </div>
   </div>
 
+  <!-- ===== 기쁘띠콘 (2026, OSP) ===== -->
+  <div class="proj-card">
+    <div class="proj-head">
+      <span class="proj-icon">🎁</span>
+      <h3 class="proj-title">기쁘띠콘</h3>
+      <span class="proj-badge">2026 OSP</span>
+    </div>
+    <p class="proj-desc">안 쓰는 기프티콘을 이화인끼리 사고파는 중고 거래 마켓. 상품 등록·검색, 판매자 리뷰·평점, AJAX 좋아요를 갖춘 Flask · Firebase 팀 웹 서비스.</p>
+    <div class="proj-tech">
+      <span class="proj-chip">Python</span><span class="proj-chip">Flask</span><span class="proj-chip">Firebase</span><span class="proj-chip">JavaScript</span>
+    </div>
+    <div class="proj-links">
+      <a href="https://github.com/osp-5sondoson/2026_osp_project_5sondoson" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+  </div>
+
   <!-- ===== 은행 이탈 예측 XAI (2026-07) ===== -->
   <div class="proj-card">
     <div class="proj-head">
