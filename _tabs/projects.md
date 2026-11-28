@@ -64,7 +64,7 @@ order: 4
     <div class="proj-head">
       <span class="proj-icon">🎁</span>
       <h3 class="proj-title">기쁘띠콘</h3>
-      <span class="proj-badge">2026 OSP</span>
+      <span class="proj-badge">2026-2 OSP</span>
     </div>
     <p class="proj-desc">안 쓰는 기프티콘을 이화인끼리 사고파는 중고 거래 마켓. 상품 등록·검색, 판매자 리뷰·평점, AJAX 좋아요를 갖춘 Flask · Firebase 팀 웹 서비스.</p>
     <div class="proj-tech">
