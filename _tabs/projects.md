@@ -37,8 +37,8 @@ order: 4
       <span class="proj-chip">Python</span><span class="proj-chip">scikit-learn</span><span class="proj-chip">SHAP</span><span class="proj-chip">XAI</span>
     </div>
     <div class="proj-links">
-      <a href="https://github.com/subin21cc/2026-sinchon-hackathon-team16" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> 대시보드</a>
-      <a href="https://github.com/subin21cc/bank-customer-churn-analysis" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> ML 분석</a>
+      <a href="https://github.com/subin21cc/2026-sinchon-hackathon-team16" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Dashboard</a>
+      <a href="https://github.com/subin21cc/bank-customer-churn-analysis" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> ML Analysis</a>
     </div>
   </div>
 
