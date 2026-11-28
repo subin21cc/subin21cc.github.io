@@ -25,6 +25,22 @@ order: 4
     </div>
   </div>
 
+  <!-- ===== PreVisit (2026-2, HAI) ===== -->
+  <div class="proj-card">
+    <div class="proj-head">
+      <span class="proj-icon">🩺</span>
+      <h3 class="proj-title">PreVisit</h3>
+      <span class="proj-badge">2026-2 HAI</span>
+    </div>
+    <p class="proj-desc">대기실 Kiosk가 환자에게 음성으로 문진하고, AI가 정리한 초안을 의사가 '확인 필요' Badge를 하나씩 검토·승인하는 Human-in-the-loop 진료 전 문진 시스템. Figma Prototype과 User Study로 Badge 효과와 Over-reliance를 검증한 HAI 프로젝트.</p>
+    <div class="proj-tech">
+      <span class="proj-chip">Figma</span><span class="proj-chip">LLM</span><span class="proj-chip">Voice UI</span><span class="proj-chip">Human-in-the-loop</span><span class="proj-chip">User Study</span>
+    </div>
+    <div class="proj-links">
+      <a href="https://www.figma.com/proto/jwnRFwttzZyJWtxzxzYt20/?node-id=95-4672&amp;starting-point-node-id=95%3A4672" target="_blank" rel="noopener noreferrer"><i class="fab fa-figma"></i> Prototype</a>
+    </div>
+  </div>
+
   <!-- ===== Re:Ad (2026, Uni-DTHON 은상) ===== -->
   <div class="proj-card">
     <div class="proj-head">
