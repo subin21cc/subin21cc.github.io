@@ -25,6 +25,24 @@ order: 4
     </div>
   </div>
 
+  <!-- ===== Re:Ad (2026, Uni-DTHON 은상) ===== -->
+  <div class="proj-card">
+    <div class="proj-head">
+      <span class="proj-icon">🚦</span>
+      <h3 class="proj-title">Re:Ad</h3>
+      <span class="proj-badge">2026 Uni-DTHON</span>
+      <span class="proj-badge proj-award">🥈 은상</span>
+    </div>
+    <p class="proj-desc">AI로 만든 메뉴 이미지·홍보 문구를 실제 음식 사진과 비교해 법령 근거로 검수하고, 개선 Prompt와 문구 수정안을 제안하는 AI 홍보물 검수 서비스(Spring Boot · Next.js).</p>
+    <div class="proj-tech">
+      <span class="proj-chip">Spring Boot</span><span class="proj-chip">Spring AI</span><span class="proj-chip">Next.js</span><span class="proj-chip">TypeScript</span><span class="proj-chip">Supabase</span>
+    </div>
+    <div class="proj-links">
+      <a href="https://github.com/2026-UniD-Hackathon-Team15/ollyeodo" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+      <a href="https://ollyeodo-frontend.onrender.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i> Demo</a>
+    </div>
+  </div>
+
   <!-- ===== 기쁘띠콘 (2026, OSP) ===== -->
   <div class="proj-card">
     <div class="proj-head">
@@ -224,6 +242,26 @@ order: 4
   .projects .proj-links a:hover {
     color: var(--proj-accent) !important;
     border-color: var(--proj-accent) !important;
+  }
+
+  /* ===== Award badge (silver) ===== */
+  .projects .proj-award {
+    margin-left: 0;
+    color: #5f6670;
+    background: linear-gradient(135deg, #f4f5f7, #d9dde2);
+    border: 1px solid #c3c8cf;
+  }
+  html[data-mode='dark'] .projects .proj-award {
+    color: #e3e6ea;
+    background: linear-gradient(135deg, #4a4f57, #343840);
+    border-color: #6b717a;
+  }
+  @media (prefers-color-scheme: dark) {
+    html:not([data-mode='light']) .projects .proj-award {
+      color: #e3e6ea;
+      background: linear-gradient(135deg, #4a4f57, #343840);
+      border-color: #6b717a;
+    }
   }
 
   @media (max-width: 576px) {
