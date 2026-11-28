@@ -46,8 +46,8 @@ order: 4
     <div class="proj-head">
       <span class="proj-icon">🚦</span>
       <h3 class="proj-title">Re:Ad</h3>
-      <span class="proj-badge">2026 Uni-DTHON</span>
       <span class="proj-badge proj-award">🥈 은상</span>
+      <span class="proj-badge">2026 Uni-DTHON</span>
     </div>
     <p class="proj-desc">AI로 만든 메뉴 이미지·홍보 문구를 실제 음식 사진과 비교해 법령 근거로 검수하고, 개선 Prompt와 문구 수정안을 제안하는 AI 홍보물 검수 서비스(Spring Boot · Next.js).</p>
     <div class="proj-tech">
